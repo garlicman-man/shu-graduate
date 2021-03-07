@@ -14,15 +14,14 @@ export default new Router({
       component: Tab
     },
     {
-      path: '/',
+      path: '/components/Pop',
       name: 'Pop',
       component: Pop
     },
     {
-      path: '/',
+      path: '/components/Table',
       name: 'Table',
       component: Table
     }
-
   ]
 })
