@@ -1,7 +1,7 @@
 <template>
   <el-row  class="tac">
   <el-col :span="4">
-    <h5>毕业设计</h5><br>
+    <h5>毕业设计选择系统</h5><br>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -29,7 +29,8 @@
   </el-col>
      <el-table
         :data="tableData"
-        style="width: 80%">
+        style="width: 70%"
+        border='ture'>
         <el-table-column
           prop="pid"
           label="项目号"
