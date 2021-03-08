@@ -4,12 +4,20 @@ import HelloWorld from '@/components/HelloWorld'
 import Table from '@/components/Table'
 import Pop from '@/components/Pop'
 import Tab from '@/components/Tab'
+import Login from '@/components/Login'
+
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
+   {
+        path: '/',
+        name: 'Login',
+        component: Login
+      },
     {
-      path: '/',
+      path: '/components/Tab',
       name: 'Tab',
       component: Tab
     },
