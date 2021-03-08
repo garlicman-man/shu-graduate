@@ -1,0 +1,125 @@
+<template>
+  <el-row  class="tac">
+  <el-col :span="4">
+    <h5>教师毕业设计管理系统</h5><br>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      >
+
+
+      <el-menu-item index="1">
+            <router-link to="/components/Tob" tag="span" ><i class="el-icon-location"></i>学生选择</router-link to><br>
+      </el-menu-item>
+      <el-menu-item index="2">
+            <router-link to="/components/Tble" tag="span" ><i class="el-icon-menu"></i>查看我的</router-link to><br>
+      </el-menu-item>
+      <el-menu-item index="3" >
+            <router-link to="/components/Top" tag="span" ><i class="el-icon-setting"></i>删除已选</router-link to><br>
+      </el-menu-item>
+      <el-menu-item index="4" >
+
+      </el-menu-item>
+    </el-menu>
+  </el-col>
+     <el-table
+        :data="tableData"
+        style="width: 70%"
+        border='ture'>
+        <el-table-column
+          prop="pid"
+          label="项目号"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="pmc"
+          label="项目名"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="xh"
+          label="学号">
+        </el-table-column>
+        <el-table-column
+              prop="xm"
+              label="学生名"
+              width="180">
+        </el-table-column>
+      </el-table>
+  </el-row>
+
+</template>
+
+
+
+
+
+
+
+<script>
+export default {
+
+   /*
+
+      */
+        data() {
+            return {
+               tableData: [{
+                                   pid: '001',
+                                   pmc: '个人事务管理系统',
+                                   xh: '18105001',
+                                   xm:'XX'
+                                 },
+                                 {
+                                   pid: '001',
+                                   pmc: '个人事务管理系统',
+                                   xh: '18105001',
+                                   xm:'XX'
+                                 },
+                                 {
+                                   pid: '001',
+                                   pmc: '个人事务管理系统',
+                                   xh: '18105001',
+                                   xm:'XX'
+                                 },
+                                 {
+                                   pid: '001',
+                                   pmc: '个人事务管理系统',
+                                   xh: '18105001',
+                                   xm:'XX'
+                                 },
+                                 {
+                                   pid: '001',
+                                   pmc: '个人事务管理系统',
+                                   xh: '18105001',
+                                   xm:'XX'
+                                 }
+                  ]
+      }
+    },
+        methods: {
+             handleOpen(key, keyPath) {
+               console.log(key, keyPath);
+             },
+             handleClose(key, keyPath) {
+               console.log(key, keyPath);
+             },
+             handleEdit(index, row) {
+               console.log(index, row);
+             },
+             handleDelete(index, row) {
+               console.log(index, row);
+             }
+
+           }
+  }
+
+
+</script>
+
+
