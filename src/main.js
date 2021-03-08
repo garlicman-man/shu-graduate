@@ -9,6 +9,8 @@ import ElementUI from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
 // 注册为全局组件
 Vue.use(ElementUI)
+import axios from 'axios'
+Vue.prototype.$axios=axios //注意：挂载上去的名字不能等同于axios，使用$axio即可
 
 
 Vue.config.productionTip = false
