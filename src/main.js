@@ -12,6 +12,8 @@ Vue.use(ElementUI)
 import axios from 'axios'
 Vue.prototype.$axios=axios //注意：挂载上去的名字不能等同于axios，使用$axio即可
 
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
 
