@@ -1,8 +1,7 @@
 <template>
   <el-row  class="tac">
   <el-col :span="4">
-
-    <h5>毕业设计</h5><br>
+    <h5>毕业设计选择系统</h5><br>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -10,29 +9,28 @@
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
+      active-text-color="#ffd04b"
+      >
 
-      <el-menu-item index="1"
-       route="/components/Table"
-       >
-        <template slot="title">
-          <i class="el-icon-location"></i>
-           <router-link to="/components/Table" tag="span" >毕设选择</router-link to><br>
-        </template>
-     </el-menu-item>
+
+      <el-menu-item index="1">
+            <router-link to="/components/Tab" tag="span" ><i class="el-icon-location"></i>毕设选择</router-link to><br>
+      </el-menu-item>
       <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <router-link to="/components/Table" tag="span" >查看我的</router-link to><br>
+            <router-link to="/components/Table" tag="span" ><i class="el-icon-menu"></i>查看我的</router-link to><br>
       </el-menu-item>
       <el-menu-item index="3" >
-        <i class="el-icon-setting"></i>
-        <router-link to="/components/Table" tag="span" >删除已选</router-link to><br>
+            <router-link to="/components/Pop" tag="span" ><i class="el-icon-setting"></i>删除已选</router-link to><br>
+      </el-menu-item>
+      <el-menu-item index="4" >
+
       </el-menu-item>
     </el-menu>
   </el-col>
      <el-table
         :data="tableData"
-        style="width: 80%">
+        style="width: 70%"
+        border='ture'>
         <el-table-column
           prop="pid"
           label="项目号"
@@ -45,7 +43,8 @@
         </el-table-column>
         <el-table-column
           prop="gh"
-          label="工号">
+          label="工号"
+          width="180">
         </el-table-column>
         <el-table-column
               prop="xm"
@@ -123,3 +122,5 @@ export default {
 
 
 </script>
+
+
