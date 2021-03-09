@@ -5,6 +5,9 @@ import Table from '@/components/Table'
 import Pop from '@/components/Pop'
 import Tab from '@/components/Tab'
 import Login from '@/components/Login'
+import Tob from '@/components/Tob'
+import Tble from '@/components/Tble'
+import Top from '@/components/Top'
 
 
 import User from '@/components/User'
@@ -38,6 +41,21 @@ export default new Router({
       path: '/components/Table',
       name: 'Table',
       component: Table
-    }
+    },
+    {
+      path: '/components/Tob',
+      name: 'Tob',
+      component: Tob
+     },
+     {
+      path: '/components/Tble',
+      name: 'Tble',
+      component: Tble
+      },
+      {
+      path: '/components/Top',
+      name: 'Top',
+      component: Top
+           },
   ]
 })
