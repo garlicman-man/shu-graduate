@@ -58,11 +58,15 @@
       };
       return {
         ruleForm: {
+          id: '',
           pass: '',
           checkPass: '',
-          age: ''
+
         },
         rules: {
+          id:[
+          {validator: validatePass,trigger:'blur'}
+          ],
           pass: [
             { validator: validatePass, trigger: 'blur' }
           ],
@@ -74,17 +78,25 @@
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-            this.$router.push({name:'Tab'});
-            /*
-            提交验证成功后跳转
-            */
-          } else {
-            console.log('error submit!!');
-            return false;
+        this.$axios.get('/apis/users/check', {
+          params: {
+            xh:this.ruleForm.id,
+            pwd:this.ruleForm.pass
           }
+        }).then((response) => {
+          // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
+          console.log(response);
+          console.log(response.data);
+          this.resData = response.data;
+          this.tempdata = response.data.recordset
+          //this.msg = this.tempdata
+          if(this.tempdata.length==1){
+            //'localhost:8080/tab?xh='+this.ruleForm.id
+            this.$router.push({ name: 'Tab', params: { xh: this.ruleForm.id }});
+          }
+        }).catch((error) => {
+          // catch 指请求出错的处理
+          console.log(error);
         });
       },
       resetForm(formName) {

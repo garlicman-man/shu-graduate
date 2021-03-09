@@ -57,13 +57,27 @@
         </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
-        <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+
+<!--
         <el-button
           size="mini"
           type="danger"
           @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+-->
+            <el-popconfirm
+              confirm-button-text='好的'
+              @confirm="ConfirmDelete(scope.$index, scope.row)"
+              cancel-button-text='不用了'
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除所选项目吗？"
+
+            >
+              <el-button
+               slot="reference"
+              @click="handleDelete(scope.$index, scope.row) ">删除</el-button>
+            </el-popconfirm>
+
       </template>
     </el-table-column>
   </el-table>
@@ -129,10 +143,29 @@ export default {
                console.log(index, row);
              },
              handleDelete(index, row) {
+
+//this.tableData.splice(index, 1);
+             },
+             ConfirmDelete(index, row) {
                console.log(index, row);
+                this.tableData.splice(index, 1);
+
+/*
+                                    pid:this.tableData[index].pid
+                                    pmc: '个人事务管理系统',
+                                    gh: '8765001',
+                                    xm:'吴琪'
+                                    */
+
+
+
+                this.$message({
+                 type: "success",
+                 message: "删除成功!"
+                })
              }
 
-           }
+         }
   }
 
 

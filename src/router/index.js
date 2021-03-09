@@ -12,21 +12,23 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'User',
-      component: User
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    },
+   {
+          path: '/',
+          name: 'Login',
+          component: Login
+      },
+  {
+        path: '/user',
+        name: 'User',
+        component: User
+      },
     {
       path: '/components/Tab',
       name: 'Tab',
       component: Tab
     },
+
+
     {
       path: '/components/Pop',
       name: 'Pop',

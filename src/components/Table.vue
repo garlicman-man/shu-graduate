@@ -49,7 +49,7 @@
         <el-table-column
               prop="xm"
               label="教师名"
-              width="180">
+              >
         </el-table-column>
       </el-table>
   </el-row>
@@ -64,60 +64,101 @@
 
 <script>
 export default {
-
-   /*
-
-      */
-        data() {
-            return {
-               tableData: [{
-                    pid: '001',
-                    pmc: '个人事务管理系统',
-                    gh: '8765001',
-                    xm:'吴琪'
-                  },
-                  {
-                    pid: '001',
-                    pmc: '个人事务管理系统',
-                    gh: '8765001',
-                    xm:'吴琪'
-                  },
-                  {
-                    pid: '001',
-                    pmc: '个人事务管理系统',
-                    gh: '8765001',
-                    xm:'吴琪'
-                  },
-                  {
-                    pid: '001',
-                    pmc: '个人事务管理系统',
-                    gh: '8765001',
-                    xm:'吴琪'
-                  },
-                  {
-                    pid: '001',
-                    pmc: '个人事务管理系统',
-                    gh: '8765001',
-                    xm:'吴琪'
-                  }
-                  ]
-      }
-    },
-        methods: {
-             handleOpen(key, keyPath) {
-               console.log(key, keyPath);
-             },
-             handleClose(key, keyPath) {
-               console.log(key, keyPath);
-             },
-             handleEdit(index, row) {
-               console.log(index, row);
-             },
-             handleDelete(index, row) {
-               console.log(index, row);
-             }
-
+      created(){
+        var _this=this;
+        _this.$axios.get('/apis/users/getStudent', {
+           params: {
+              xh:18145001
            }
+         }).then((response) => {
+           console.log(response);
+           //console.log(response.data);
+           _this.tableData.push(response.data.recordset[0]);
+           console.log(this.tableData);
+         }).catch((error) => {
+           // catch 指请求出错的处理
+           console.log(error);
+         });
+      },
+      data() {
+        return {
+        //public arr: tabledata = []; //添加上一个中括号
+           tableData:[]
+        /*
+           tableData: [{
+                pid: '001',
+                pmc: '个人事务管理系统',
+                gh: '8765001',
+                xm:'吴琪'
+              },
+              {
+                pid: '001',
+                pmc: '个人事务管理系统',
+                gh: '8765001',
+                xm:'吴琪'
+              },
+              {
+                pid: '001',
+                pmc: '个人事务管理系统',
+                gh: '8765001',
+                xm:'吴琪'
+              },
+              {
+                pid: '001',
+                pmc: '个人事务管理系统',
+                gh: '8765001',
+                xm:'吴琪'
+              },
+              {
+                pid: '001',
+                pmc: '个人事务管理系统',
+                gh: '8765001',
+                xm:'吴琪'
+              }
+              ]
+              */
+        }
+      },
+      methods: {
+           handleOpen(key, keyPath) {
+             console.log(key, keyPath);
+           },
+           handleClose(key, keyPath) {
+             console.log(key, keyPath);
+           },
+           handleEdit(index, row) {
+             console.log(index, row);
+           },
+           handleDelete(index, row) {
+
+             console.log(index, row);
+                     this.$axios.get('/apis/users/deletechosenproject', {
+                       params: {
+                         xh:18145001,
+                         pid:'001'
+                       }
+                     }).then((response) => {
+                       // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
+                       console.log(response);
+                       console.log(response.data);
+                       this.resData = response.data;
+                       this.tempdata = response.data.recordset
+                       //this.msg = this.tempdata
+
+                     }).catch((error) => {
+                       // catch 指请求出错的处理
+                       console.log(error);
+
+                     });
+
+
+
+
+
+
+           },
+
+       }
   }
 
 

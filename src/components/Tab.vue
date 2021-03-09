@@ -1,6 +1,8 @@
+
+
 <template>
-  <el-row  class="tac">
-  <el-col :span="4">
+<el-row class='tac'>
+ <el-col :span="4">
     <h5>毕业设计选择系统</h5><br>
     <el-menu
       default-active="2"
@@ -13,24 +15,25 @@
       >
 
 
-      <el-menu-item index="1">
-            <router-link to="/components/Tab" tag="span" ><i class="el-icon-location"></i>毕设选择</router-link to><br>
+      <el-menu-item index="1" @click="tiaozhuan(Tab)">
+            <i class="el-icon-location"></i>毕设选择<br>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="2"  @click="tiaozhuan(Table)">
             <router-link to="/components/Table" tag="span" ><i class="el-icon-menu"></i>查看我的</router-link to><br>
       </el-menu-item>
-      <el-menu-item index="3" >
+      <el-menu-item index="3"  @click="tiaozhuan(Pop)">
             <router-link to="/components/Pop" tag="span" ><i class="el-icon-setting"></i>删除已选</router-link to><br>
       </el-menu-item>
-      <el-menu-item index="4" >
 
       </el-menu-item>
     </el-menu>
   </el-col>
-     <el-table
+  <el-col :span=18>
+<el-table
         :data="tableData"
         style="width: 70%"
-        border='ture'>
+        border='ture'
+        >
         <el-table-column
           prop="pid"
           label="项目号"
@@ -43,16 +46,37 @@
         </el-table-column>
         <el-table-column
           prop="gh"
-          label="工号">
+          label="工号"
+          width="180">
         </el-table-column>
         <el-table-column
               prop="xm"
               label="教师名"
-              width="180">
+              >
         </el-table-column>
-      </el-table>
-  </el-row>
+        <el-table-column label="操作">
+              <template slot-scope="scope">
 
+                    <el-popconfirm
+                      confirm-button-text='好的'
+                      @confirm="ConfirmChoice(scope.$index, scope.row)"
+                      cancel-button-text='不用了'
+                      icon="el-icon-info"
+                      icon-color="green"
+                      title="确定选择所选项目吗？"
+
+                    >
+                      <el-button
+                       slot="reference"
+                      @click="handleChoice(scope.$index, scope.row) ">选择</el-button>
+                    </el-popconfirm>
+
+              </template>
+            </el-table-column>
+
+  </el-table>
+  </el-col>
+  </el-row>
 </template>
 
 
@@ -103,23 +127,11 @@ export default {
       }
     },
         methods: {
-             handleOpen(key, keyPath) {
-               console.log(key, keyPath);
-             },
-             handleClose(key, keyPath) {
-               console.log(key, keyPath);
-             },
-             handleEdit(index, row) {
-               console.log(index, row);
-             },
-             handleDelete(index, row) {
-               console.log(index, row);
-             }
-
-           }
+               tiaozhuan(router){
+                this.$router.push({ name: router, params: { xh: this.ruleForm.id }});
+                }
+         }
   }
 
 
 </script>
-
-
