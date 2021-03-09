@@ -4,6 +4,7 @@
 <el-row class='tac'>
  <el-col :span="4">
     <h5>教师-毕业设计选择系统</h5><br>
+    <h5>{{this.gh}}</h5><br>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -13,18 +14,21 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       >
-      <el-menu-item index="1" >
-        <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh}}" tag="span" >
-          <i class="el-icon-menu"></i>选择学生</router-link><br>
-      </el-menu-item>
-      <el-menu-item index="2" >
-        <router-link :to="{path:'/components/TeacherTable',query: {gh: this.gh}}" tag="span" >
-          <i class="el-icon-menu"></i>查看我选的学生</router-link><br>
-      </el-menu-item>
-      <el-menu-item index="3" >
-        <router-link :to="{path:'/components/TeacherDelete',query: {gh: this.gh}}" tag="span" >
-          <i class="el-icon-menu"></i>删除我选的学生</router-link><br>
-      </el-menu-item>
+      <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh}}" tag="span" >
+        <el-menu-item index="1" >
+          <i class="el-icon-menu"></i>选择学生<br>
+        </el-menu-item>
+      </router-link>
+      <router-link :to="{path:'/components/TeacherTable',query: {gh: this.gh}}" tag="span" >
+        <el-menu-item index="2" >
+          <i class="el-icon-menu"></i>查看我选的学生<br>
+        </el-menu-item>
+      </router-link>
+      <router-link :to="{path:'/components/TeacherDelete',query: {gh: this.gh}}" tag="span" >
+        <el-menu-item index="3" >
+          <i class="el-icon-menu"></i>删除我选的学生<br>
+        </el-menu-item>
+      </router-link>
 
 
 

@@ -1,25 +1,21 @@
-
-
-
 <template>
- <el-row  class="tac">
-  <el-col :span="12">
-<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
- <el-form-item label="账号" prop="id">
-    <el-input type="primary" v-model="ruleForm.id" autocomplete="off"></el-input>
-  </el-form-item>
-  <el-form-item label="密码" prop="pass">
-    <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-    <el-button @click="resetForm('ruleForm')">重置</el-button>
-  </el-form-item>
-</el-form>
-
+  <el-row  class="tac">
+  <el-col :span="16">
+    <h5>毕业设计选择系统登录界面</h5><br>
+    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+     <el-form-item label="账号" prop="id">
+        <el-input type="primary" v-model="ruleForm.id" autocomplete="off"></el-input>
+     </el-form-item>
+    <el-form-item label="密码" prop="pass">
+      <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+      <el-button @click="resetForm('ruleForm')">重置</el-button>
+    </el-form-item>
+    </el-form>
   </el-col>
   </el-row>
-
 </template>
 
 <script>
@@ -93,7 +89,6 @@
             else{
               this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id }});
             }
-
           }
           else{
             this.$message({
@@ -112,3 +107,4 @@
     }
   }
 </script>
+
