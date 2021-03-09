@@ -1,10 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Table from '@/components/Table'
-import Pop from '@/components/Pop'
-import Tab from '@/components/Tab'
+// import HelloWorld from '@/components/HelloWorld'
+import StudentTable from '@/components/StudentTable'
+import StudentDelete from '@/components/StudentDelete'
+import StudentChoose from '@/components/StudentChoose'
+
+import TeacherTable from '@/components/TeacherTable'
+import TeacherDelete from '@/components/TeacherDelete'
+import TeacherChoose from '@/components/TeacherChoose'
+
+
+
 import Login from '@/components/Login'
+
 import Tob from '@/components/Tob'
 import Tble from '@/components/Tble'
 import Top from '@/components/Top'
@@ -26,22 +34,39 @@ export default new Router({
         component: User
       },
     {
-      path: '/components/Tab',
-      name: 'Tab',
-      component: Tab
+      path: '/components/StudentChoose',
+      name: 'StudentChoose',
+      component: StudentChoose
+    },
+
+    {
+      path: '/components/StudentDelete',
+      name: 'StudentDelete',
+      component: StudentDelete
+    },
+    {
+      path: '/components/StudentTable',
+      name: 'StudentTable',
+      component: StudentTable
+    },
+    {
+      path: '/components/TeacherChoose',
+      name: 'TeacherChoose',
+      component: TeacherChoose
+    },
+
+    {
+      path: '/components/TeacherDelete',
+      name: 'TeacherDelete',
+      component: TeacherDelete
+    },
+    {
+      path: '/components/TeacherTable',
+      name: 'TeacherTable',
+      component: TeacherTable
     },
 
 
-    {
-      path: '/components/Pop',
-      name: 'Pop',
-      component: Pop
-    },
-    {
-      path: '/components/Table',
-      name: 'Table',
-      component: Table
-    },
     {
       path: '/components/Tob',
       name: 'Tob',
