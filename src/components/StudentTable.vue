@@ -3,6 +3,7 @@
   <el-col :span="4">
     <h5>学生-毕业设计选择系统</h5><br>
     <h5>{{this.xh}}</h5><br>
+    <h5>{{this.xm}}</h5><br>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -12,17 +13,17 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       >
-      <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh}}" tag="span" >
+      <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh,xm: this.xm}}" tag="span" >
         <el-menu-item index="1" >
           <i class="el-icon-menu"></i>毕设选择<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/StudentTable',query: {xh: this.xh}}" tag="span" >
+      <router-link :to="{path:'/components/StudentTable',query: {xh: this.xh,xm: this.xm}}" tag="span" >
         <el-menu-item index="2" >
-          <i class="el-icon-menu"></i>查看<br>
+          <i class="el-icon-menu"></i>查看已选<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/StudentDelete',query: {xh: this.xh}}" tag="span" >
+      <router-link :to="{path:'/components/StudentDelete',query: {xh: this.xh,xm: this.xm}}" tag="span" >
         <el-menu-item index="3" >
           <i class="el-icon-menu"></i>删除已选<br>
         </el-menu-item>
@@ -66,6 +67,7 @@ export default {
   mounted(){
     this.tableData = [];
     this.xh = this.$route.query.xh
+    this.xm = this.$route.query.xm
     console.log("this is table")
     console.log(this.xh)
     var _this=this;
@@ -88,6 +90,7 @@ export default {
   data() {
     return {
       xh:'',
+      xm:'',
       tableData:[]
     }
   },

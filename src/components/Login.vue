@@ -1,7 +1,7 @@
 <template>
   <el-row  class="tac">
-  <el-col :span="16">
-    <h5>毕业设计选择系统登录界面</h5><br>
+  <el-col :span="12">
+    <h5>----毕业设计选择系统登录界面----</h5><br>
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
      <el-form-item label="账号" prop="id">
         <el-input type="primary" v-model="ruleForm.id" autocomplete="off"></el-input>
@@ -77,6 +77,7 @@
           //this.msg = this.tempdata
           if(this.tempdata.length==1){
             //'localhost:8080/tab?xh='+this.ruleForm.id
+            console.log(this.tempdata[0].xm)
             this.$message({
               type: "Success",
               message: "成功登录"
@@ -84,10 +85,10 @@
             console.log("this is test teacher or student")
             console.log(this.ruleForm.id[0])
             if(this.ruleForm.id[0] == 1){
-              this.$router.push({ name: 'StudentTable', query: { xh: this.ruleForm.id }});
+              this.$router.push({ name: 'StudentTable', query: { xh: this.ruleForm.id,xm: this.tempdata[0].xm }});
             }
             else{
-              this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id }});
+              this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id,xm: this.tempdata[0].xm }});
             }
           }
           else{

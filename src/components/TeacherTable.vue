@@ -3,6 +3,7 @@
   <el-col :span="4">
     <h5>教师-毕业设计选择系统</h5><br>
     <h5>{{this.gh}}</h5><br>
+    <h5>{{this.xm}}</h5><br>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -13,19 +14,29 @@
       active-text-color="#ffd04b"
       >
 
-      <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh}}" tag="span" >
+      <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh, xm: this.xm}}" tag="span" >
         <el-menu-item index="1" >
           <i class="el-icon-menu"></i>选择学生<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherTable',query: {gh: this.gh}}" tag="span" >
+      <router-link :to="{path:'/components/TeacherTable',query: {gh: this.gh, xm: this.xm}}" tag="span" >
         <el-menu-item index="2" >
           <i class="el-icon-menu"></i>查看我选的学生<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherDelete',query: {gh: this.gh}}" tag="span" >
+      <router-link :to="{path:'/components/TeacherDelete',query: {gh: this.gh, xm: this.xm}}" tag="span" >
         <el-menu-item index="3" >
           <i class="el-icon-menu"></i>删除我选的学生<br>
+        </el-menu-item>
+      </router-link>
+      <router-link :to="{path:'/components/TeacherOpen',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <el-menu-item index="4" >
+          <i class="el-icon-menu"></i>开设项目<br>
+        </el-menu-item>
+      </router-link>
+      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <el-menu-item index="5" >
+          <i class="el-icon-menu"></i>查看开设项目<br>
         </el-menu-item>
       </router-link>
 
@@ -67,6 +78,7 @@ export default {
   mounted(){
     this.tableData = [];
     this.gh = this.$route.query.gh
+    this.xm = this.$route.query.xm
     console.log("this is table")
     console.log(this.gh)
     var _this=this;
@@ -89,6 +101,7 @@ export default {
   data() {
     return {
       gh:'',
+      xm:'',
       tableData:[]
     }
   },

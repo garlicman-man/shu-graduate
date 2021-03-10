@@ -5,7 +5,7 @@
       <h5>{{this.gh}}</h5><br>
       <h5>{{this.xm}}</h5><br>
       <el-menu
-        default-active="3"
+        default-active="4"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
@@ -40,12 +40,14 @@
           </el-menu-item>
         </router-link>
 
+
+
     </el-menu>
   </el-col>
   <el-col :span=18>
 <el-table
         :data="tableData"
-        style="width: 90%"
+        style="width: 70%"
         border='ture'
         >
         <el-table-column
@@ -58,36 +60,34 @@
           label="项目名"
           width="180">
         </el-table-column>
-        <el-table-column
-          prop="xh"
-          label="学号"
-          width="180">
-        </el-table-column>
-        <el-table-column
-              prop="xm"
-              label="学生名"
-              width="180">
-        </el-table-column>
-    <el-table-column label="操作">
-    <template slot-scope="scope">
-      <el-popconfirm
-        confirm-button-text='好的'
-        @confirm="ConfirmDelete(scope.$index, scope.row)"
-        cancel-button-text='不用了'
-        icon="el-icon-info"
-        icon-color="red"
-        title="确定删除所选项目吗？"
-      >
-        <el-button
-         slot="reference"
-        @click="handleDelete() ">删除</el-button>
-      </el-popconfirm>
-    </template>
-    </el-table-column>
+        <el-table-column label="操作">
+              <template slot-scope="scope">
+                    <el-popconfirm
+                      confirm-button-text='好的'
+                      @confirm="ConfirmChoice(scope.$index, scope.row)"
+                      cancel-button-text='不用了'
+                      icon="el-icon-info"
+                      icon-color="green"
+                      title="确定开设该项目吗？"
+                    >
+                      <el-button
+                       slot="reference"
+                      @click="handleChoice(scope.$index, scope.row) ">选择</el-button>
+                    </el-popconfirm>
+
+              </template>
+            </el-table-column>
+
   </el-table>
   </el-col>
   </el-row>
 </template>
+
+
+
+
+
+
 
 <script>
 export default {
@@ -98,10 +98,7 @@ export default {
     console.log("this is table")
     console.log(this.gh)
     var _this=this;
-    _this.$axios.get('/apis/users/getTeacherChosen', {
-      params: {
-        gh:this.gh
-      }
+    _this.$axios.get('/apis/users/getAllProjects', {
     }).then((response) => {
       var i;
       for(i=0;i<response.data.recordset.length;i++){
@@ -115,55 +112,56 @@ export default {
     });
   },
   created(){
-    console.log("this is pop")
+    this.gh = this.$route.query.gh
+    console.log("this is tab")
     console.log(this.gh)
   },
   data() {
     return {
-      gh:'',
-      xm:'',
+      gh: '',
+      xm: '',
       tableData: []
     }
   },
   methods: {
-       handleOpen(key, keyPath) {
-         console.log(key, keyPath);
-       },
-       handleClose(key, keyPath) {
-         console.log(key, keyPath);
-       },
-       handleEdit(index, row) {
-         console.log(index, row);
-       },
-       handleDelete(index, row) {
+    tiaozhuan(router){
+      this.$router.push({ name: router, params: { gh: this.ruleForm.id }});
+    },
+    handleChoice(index, row) {
 
-       },
-       ConfirmDelete(index, row) {
-         // var _this = this;
-         console.log('this is comfirm delete')
-         console.log("this is from upper:")
-         console.log(index)
-         this.$axios.get('/apis/users/deletechosenStudent', {
-           params: {
-             pid:this.tableData[index].pid,
-             gh:this.gh,
-             xh:this.tableData[index].xh
-           }
-         }).then((response) => {
-           console.log(response);
-         }).catch((error) => {
-           // catch 指请求出错的处理
-           console.log(error);
-         });
-         this.$message({
-           type: "success",
-           message: "删除学生成功!"
-         })
-         this.tableData.splice(index, 1);
-       }
-
-   }
+    },
+    ConfirmChoice(index, row) {
+      // var _this = this;
+      console.log('this is comfirm add')
+      console.log("this is from upper:")
+      console.log(index)
+      this.$axios.get('/apis/users/OpenProject', {
+        params: {
+          pid:this.tableData[index].pid,
+          pmc:this.tableData[index].pmc,
+          gh:this.gh,
+          xm:this.xm
+          // xh:this.tableData[index].xh
+        }
+      }).then((response) => {
+        // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
+        console.log(response);
+        this.$message({
+          type: "success",
+          message: "选择成功!"
+        })
+      }).catch((error) => {
+        console.log("this is error")
+        console.log(error);
+      });
+      this.$message({
+        type: "success",
+        message: "选择成功!"
+      })
+      this.tableData.splice(index, 1);
+    }
   }
+}
 
 
 </script>

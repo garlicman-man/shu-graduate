@@ -8,6 +8,8 @@ import StudentChoose from '@/components/StudentChoose'
 import TeacherTable from '@/components/TeacherTable'
 import TeacherDelete from '@/components/TeacherDelete'
 import TeacherChoose from '@/components/TeacherChoose'
+import TeacherOpen from '@/components/TeacherOpen'
+import TeacherProject from '@/components/TeacherProject'
 
 
 
@@ -60,6 +62,16 @@ export default new Router({
       path: '/components/TeacherTable',
       name: 'TeacherTable',
       component: TeacherTable
+    },
+    {
+      path: '/components/TeacherOpen',
+      name: 'TeacherOpen',
+      component: TeacherOpen
+    },
+    {
+      path: '/components/TeacherProject',
+      name: 'TeacherProject',
+      component: TeacherProject
     },
       //
       //

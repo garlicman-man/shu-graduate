@@ -5,7 +5,7 @@
       <h5>{{this.gh}}</h5><br>
       <h5>{{this.xm}}</h5><br>
       <el-menu
-        default-active="3"
+        default-active="5"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
@@ -58,16 +58,6 @@
           label="项目名"
           width="180">
         </el-table-column>
-        <el-table-column
-          prop="xh"
-          label="学号"
-          width="180">
-        </el-table-column>
-        <el-table-column
-              prop="xm"
-              label="学生名"
-              width="180">
-        </el-table-column>
     <el-table-column label="操作">
     <template slot-scope="scope">
       <el-popconfirm
@@ -98,7 +88,7 @@ export default {
     console.log("this is table")
     console.log(this.gh)
     var _this=this;
-    _this.$axios.get('/apis/users/getTeacherChosen', {
+    _this.$axios.get('/apis/users/getMyOpenProject', {
       params: {
         gh:this.gh
       }
@@ -140,14 +130,15 @@ export default {
        },
        ConfirmDelete(index, row) {
          // var _this = this;
-         console.log('this is comfirm delete')
+         console.log('this is comfirm delete my project')
          console.log("this is from upper:")
          console.log(index)
-         this.$axios.get('/apis/users/deletechosenStudent', {
+         console.log(this.tableData[index].pid)
+         console.log(this.gh)
+         this.$axios.get('/apis/users/deleteMyProject', {
            params: {
              pid:this.tableData[index].pid,
              gh:this.gh,
-             xh:this.tableData[index].xh
            }
          }).then((response) => {
            console.log(response);
@@ -157,7 +148,7 @@ export default {
          });
          this.$message({
            type: "success",
-           message: "删除学生成功!"
+           message: "删除我的项目成功!"
          })
          this.tableData.splice(index, 1);
        }
