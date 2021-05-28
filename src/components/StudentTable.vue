@@ -1,9 +1,11 @@
 <template>
   <el-row  class="tac">
   <el-col :span="4">
-    <h5>学生-毕业设计选择系统</h5><br>
-    <h5>{{this.xh}}</h5><br>
-    <h5>{{this.xm}}</h5><br>
+    <el-card class="box-card">
+      <div>学生-毕设管理系统</div>
+      <div>{{this.xh}}</div>
+      <div>{{this.xm}}</div>
+    </el-card>
     <el-menu
       default-active="2"
       class="el-menu-vertical-demo"
@@ -13,7 +15,6 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       >
-
       <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh,xm: this.xm}}" tag="span" >
         <el-menu-item index="1" >
           <i class="el-icon-menu"></i>毕设选择<br>
@@ -111,6 +112,9 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     },
+    goBack() {
+      console.log('go back');
+    }
   }
 }
 
@@ -118,3 +122,16 @@ export default {
 </script>
 
 
+<style>
+.text {
+  font-size: 14px;
+}
+
+.item {
+  padding: 18px 0;
+}
+
+.box-card {
+  width: 240px;
+}
+</style>

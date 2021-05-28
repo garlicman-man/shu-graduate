@@ -1,9 +1,11 @@
 <template>
   <el-row  class="tac">
     <el-col :span="4">
-      <h5>教师-毕业设计选择系统</h5><br>
-      <h5>{{this.gh}}</h5><br>
-      <h5>{{this.xm}}</h5><br>
+      <el-card class="box-card">
+        <div>教师-毕设管理系统</div>
+        <div>{{this.gh}}</div>
+        <div>{{this.xm}}</div>
+      </el-card>
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
@@ -176,3 +178,17 @@ export default {
 
 
 </script>
+
+<style>
+.text {
+  font-size: 14px;
+}
+
+.item {
+  padding: 18px 0;
+}
+
+.box-card {
+  width: 240px;
+}
+</style>
