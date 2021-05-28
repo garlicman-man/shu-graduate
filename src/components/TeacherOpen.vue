@@ -101,7 +101,7 @@ export default {
     _this.$axios.get('/apis/users/getAllProjects', {
     }).then((response) => {
       var i;
-      for(i=0;i<response.data.recordset.length;i++){
+      for(i=0;i<response.data.length;i++){
         _this.tableData.push(response.data[i]);
       }
       // console.log(response.data.recordset.length)
@@ -135,7 +135,7 @@ export default {
       console.log('this is comfirm add')
       console.log("this is from upper:")
       console.log(index)
-      this.$axios.get('/apis/users/OpenProject', {
+      this.$axios.get('/apis/users/teacherOpenProject', {
         params: {
           pid:this.tableData[index].pid,
           pmc:this.tableData[index].pmc,

@@ -135,7 +135,7 @@ export default {
       console.log("this is from upper:")
       console.log(index)
       console.log(row)
-      this.$axios.get('/apis/users/chooseProject', {
+      this.$axios.get('/apis/users/studentChooseProject', {
         params: {
           pid:this.tableData[index].pid,
           xh:this.xh,
@@ -144,10 +144,10 @@ export default {
       }).then((response) => {
         // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
         console.log(response);
-        this.$message({
-          type: "success",
-          message: "选择成功!"
-        })
+        // this.$message({
+        //   type: "success",
+        //   message: "选择成功!"
+        // })
       }).catch((error) => {
 
         console.log(error);

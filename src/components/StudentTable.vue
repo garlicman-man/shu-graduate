@@ -74,7 +74,7 @@ export default {
     console.log("this is table")
     console.log(this.xh)
     var _this=this;
-    _this.$axios.get('/apis/users/getStudentChosen', {
+    _this.$axios.get('/apis/users/studentGetChosenProject', {
       params: {
         xh:this.xh
       }

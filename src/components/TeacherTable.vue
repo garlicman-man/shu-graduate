@@ -82,16 +82,16 @@ export default {
     console.log("this is table")
     console.log(this.gh)
     var _this=this;
-    _this.$axios.get('/apis/users/getTeacherChosen', {
+    _this.$axios.get('/apis/users/teacherGetChosenStudents', {
       params: {
         gh:this.gh
       }
     }).then((response) => {
       var i;
-      for(i=0;i<response.data.recordset.length;i++){
-        _this.tableData.push(response.data.recordset[i]);
+      for(i=0;i<response.data.length;i++){
+        _this.tableData.push(response.data[i]);
       }
-      console.log(response.data.recordset.length)
+      console.log(response.data.length)
       console.log(this.tableData);
     }).catch((error) => {
       // catch 指请求出错的处理
