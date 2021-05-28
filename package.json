@@ -4,6 +4,7 @@
   "description": "A Vue.js project",
   "author": "lee <1825103317>",
   "private": true,
+
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
@@ -76,4 +77,6 @@
     "last 2 versions",
     "not ie <= 8"
   ]
+
 }
+

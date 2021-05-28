@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
+
+import HelloWorld from '@/components/HelloWorld'
+
 import StudentTable from '@/components/StudentTable'
 import StudentDelete from '@/components/StudentDelete'
 import StudentChoose from '@/components/StudentChoose'
@@ -20,11 +22,16 @@ import Login from '@/components/Login'
 // import Top from '@/components/Top'
 
 
-import User from '@/components/User'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'Login',
+    //   component: HelloWorld,
+    //   // meta: {title: '首页'}
+    // },
     {
       path: '/',
       name: 'Login',
@@ -72,23 +79,6 @@ export default new Router({
       path: '/components/TeacherProject',
       name: 'TeacherProject',
       component: TeacherProject
-    },
-      //
-      //
-      // {
-      //   path: '/components/Tob',
-      //   name: 'Tob',
-      //   component: Tob
-      //  },
-      //  {
-      //   path: '/components/Tble',
-      //   name: 'Tble',
-      //   component: Tble
-      //   },
-      //   {
-      //   path: '/components/Top',
-      //   name: 'Top',
-      //   component: Top
-      //   },
+    }
   ]
 })

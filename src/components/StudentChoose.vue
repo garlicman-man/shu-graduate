@@ -42,26 +42,26 @@
         <el-table-column
           prop="pid"
           label="项目号"
-          width="180">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="pmc"
           label="项目名"
-          width="180">
+          width="150">
         </el-table-column>
         <el-table-column
           prop="gh"
           label="工号"
-          width="180">
+          width="150">
         </el-table-column>
         <el-table-column
-              prop="xm"
-              label="教师名"
+          prop="xm"
+          label="教师名"
+          width="150"
               >
         </el-table-column>
         <el-table-column label="操作">
               <template slot-scope="scope">
-
                     <el-popconfirm
                       confirm-button-text='好的'
                       @confirm="ConfirmChoice(scope.$index, scope.row)"
@@ -69,7 +69,6 @@
                       icon="el-icon-info"
                       icon-color="green"
                       title="确定选择所选项目吗？"
-
                     >
                       <el-button
                        slot="reference"
@@ -94,16 +93,16 @@ export default {
     console.log("this is table")
     console.log(this.xh)
     var _this=this;
-    _this.$axios.get('/apis/users/getAllProjectsExceptSelected', {
+    _this.$axios.get('/apis/users/studentGetAllProjectsExceptSelected', {
       params: {
         xh:this.xh
       }
     }).then((response) => {
       var i;
-      for(i=0;i<response.data.recordset.length;i++){
-        _this.tableData.push(response.data.recordset[i]);
+      for(i=0;i<response.data.length;i++){
+        _this.tableData.push(response.data[i]);
       }
-      console.log(response.data.recordset.length)
+      // console.log(response.data.recordset.length)
       console.log(this.tableData);
     }).catch((error) => {
       // catch 指请求出错的处理
@@ -135,6 +134,7 @@ export default {
       console.log('this is comfirm add')
       console.log("this is from upper:")
       console.log(index)
+      console.log(row)
       this.$axios.get('/apis/users/chooseProject', {
         params: {
           pid:this.tableData[index].pid,
