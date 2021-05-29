@@ -46,7 +46,7 @@
       <el-col :span="4">
         <el-input
           placeholder="请输入工号或姓名"
-          v-model="input"
+          v-model="gh"
           clearable>
         </el-input>
       </el-col>
@@ -68,17 +68,17 @@
         <el-form-item label="性别" prop="xb">
           <el-input v-model="ruleForm.xb"></el-input>
         </el-form-item>
-        <el-form-item label="学院" prop="mc">
-          <el-input v-model="ruleForm.mc"></el-input>
+        <el-form-item label="学院" prop="xy">
+          <el-input v-model="ruleForm.xy"></el-input>
         </el-form-item>
         <el-form-item label="职称" prop="zc">
           <el-input v-model="ruleForm.zc"></el-input>
         </el-form-item>
-        <el-form-item label="联系方式" prop="sj">
-          <el-input v-model="ruleForm.sj"></el-input>
+        <el-form-item label="联系方式" prop="lxfs">
+          <el-input v-model="ruleForm.lxfs"></el-input>
         </el-form-item>
-        <el-form-item label="个人介绍" prop="intro">
-          <el-input type="textarea" v-model="ruleForm.intro"></el-input>
+        <el-form-item label="个人介绍" prop="grjs">
+          <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
         </el-form-item>
 
 <!--        <el-form-item>-->
@@ -130,14 +130,23 @@ export default {
       xh:'12345',
       xm:'李明',
       input:'',
+      gh:'',
+      tableData:[],
       ruleForm: {
-        gh: "1234566",
-        xm: "朱颖",
-        xb: "女",
-        mc: "计算机学院",
-        zc: "教授",
-        sj: "1896182007",
-        intro: "研究方法：神经网络"
+        // gh: "1234566",
+        // xm: "朱颖",
+        // xb: "女",
+        // xy: "计算机学院",
+        // zc: "教授",
+        // lxfs: "1896182007",
+        // grjs: "研究方法：神经网络"
+        gh: "",
+        xm: "",
+        xb: "",
+        xy: "",
+        zc: "",
+        lxfs: "",
+        grjs: ""
       },
       rules: {
         gh: [
@@ -151,7 +160,7 @@ export default {
         xb: [
           { required: true, message: '请选择性别', trigger: 'change' }
         ],
-        mc: [
+        xy: [
           { required: true, message: '请输入学院', trigger: 'blur' },
           { trigger: 'blur' }
         ],
@@ -159,11 +168,11 @@ export default {
           { required: true, message: '请输入职称', trigger: 'blur' },
           { trigger: 'blur' }
         ],
-        sj: [
+        lxfs: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
           { min: 11, max: 11, message: '长度为11',trigger: 'blur' }
         ],
-        intro: [
+        grjs: [
           { message: '请填写个人介绍', trigger: 'blur' },
           { min: 0, max: 50, message: '长度在 0 到 50 个字符', trigger: 'blur' }
         ]
@@ -176,6 +185,38 @@ export default {
       console.log(this.input)
     },
     handleSearch(){
+      console.log(this.gh)
+      var _this=this;
+      _this.$axios.get('/apis/users/getTeacherInfo', {
+        params: {
+          gh:this.gh
+        }
+      }).then((response) => {
+        console.log(response)
+        var i;
+        for(i=0;i<response.data.length;i++){
+          _this.tableData.push(response.data[i]);
+        }
+        this.ruleForm.gh = this.tableData[0].gh;
+        this.ruleForm.xb = this.tableData[0].xb;
+        this.ruleForm.xm = this.tableData[0].xm;
+        this.ruleForm.xy = this.tableData[0].xy;
+        this.ruleForm.zc = this.tableData[0].zc;
+        this.ruleForm.grjs = this.tableData[0].grjs;
+        this.ruleForm.lxfs = this.tableData[0].lxfs;
+
+        // console.log(this.tableData);
+      }).catch((error) => {
+        // catch 指请求出错的处理
+        console.log(error);
+      });
+
+
+
+
+
+
+
       console.log(this.input)
     },
     handleOpen(key, keyPath) {

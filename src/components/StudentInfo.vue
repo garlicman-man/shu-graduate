@@ -54,11 +54,11 @@
       <el-form-item label="性别" prop="xb">
         <el-input v-model="ruleForm.xb"></el-input>
       </el-form-item>
-      <el-form-item label="学院" prop="mc">
-        <el-input v-model="ruleForm.mc"></el-input>
+      <el-form-item label="学院" prop="xy">
+        <el-input v-model="ruleForm.xy"></el-input>
       </el-form-item>
-      <el-form-item label="绩点" prop="cj">
-        <el-input v-model="ruleForm.cj"></el-input>
+      <el-form-item label="绩点" prop="jd">
+        <el-input v-model="ruleForm.jd"></el-input>
       </el-form-item>
 <!--      <el-form-item label="个人介绍" prop="intro">-->
 <!--        <el-input type="textarea" v-model="ruleForm.intro"></el-input>-->
@@ -71,10 +71,10 @@
     </el-form>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
           <el-form-item label="联系方式" prop="sj">
-            <el-input v-model="ruleForm.sj"></el-input>
+            <el-input v-model="ruleForm.lxfs"></el-input>
           </el-form-item>
           <el-form-item label="个人介绍" prop="intro">
-            <el-input type="textarea" v-model="ruleForm.intro"></el-input>
+            <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
@@ -91,29 +91,43 @@ export default {
   created(){
 
   },
-  // mounted(){
-  //   this.tableData = [];
-  //   this.xh = this.$route.query.xh
-  //   this.xm = this.$route.query.xm
-  //   console.log("this is table")
-  //   console.log(this.xh)
-  //   var _this=this;
-  //   _this.$axios.get('/apis/users/getStudentChosen', {
-  //     params: {
-  //       xh:this.xh
-  //     }
-  //   }).then((response) => {
-  //     var i;
-  //     for(i=0;i<response.data.recordset.length;i++){
-  //       _this.tableData.push(response.data.recordset[i]);
-  //     }
-  //     console.log(response.data.recordset.length)
-  //     console.log(this.tableData);
-  //   }).catch((error) => {
-  //     // catch 指请求出错的处理
-  //     console.log(error);
-  //   });
-  // },
+  mounted(){
+    this.tableData = [];
+    this.xh = this.$route.query.xh
+    this.xm = this.$route.query.xm
+    console.log("this is table")
+    console.log(this.xh)
+    var _this=this;
+
+
+
+    _this.$axios.get('/apis/users/getStudentInfo', {
+      params: {
+        xh:this.xh
+      }
+    }).then((response) => {
+      var i;
+      for(i=0;i<response.data.length;i++){
+        _this.tableData.push(response.data[i]);
+      }
+      this.ruleForm.xh = this.tableData[0].xh;
+      this.ruleForm.xm = this.tableData[0].xm;
+      this.ruleForm.xy = this.tableData[0].xy;
+      this.ruleForm.jd = this.tableData[0].jd;
+      this.ruleForm.grjs = this.tableData[0].grjs;
+      this.ruleForm.lxfs = this.tableData[0].lxfs;
+
+      console.log(this.tableData);
+    }).catch((error) => {
+      // catch 指请求出错的处理
+      console.log(error);
+    });
+
+
+
+
+
+  },
   data() {
     return {
       xh:'111',
@@ -122,9 +136,11 @@ export default {
         xh: "18120182",
         xm: "冯沛欣",
         xb: "女",
-        mc: "计算机学院",
-        cj: "3.55",
-        desc: "我是冯沛欣"
+        xy: "计算机学院",
+        jd: "3.55",
+        grjs: "我是冯沛欣",
+        lxfs: "1212121"
+
       },
       rules: {
         xh: [
@@ -138,11 +154,11 @@ export default {
         xb: [
           { required: true, message: '请选择性别', trigger: 'change' }
         ],
-        mc: [
+        xy: [
           { required: true, message: '请输入学院', trigger: 'blur' },
           { trigger: 'blur' }
         ],
-        cj: [
+        jd: [
           { required: true, message: '请输入绩点', trigger: 'blur' },
           { trigger: 'blur' }
         ],

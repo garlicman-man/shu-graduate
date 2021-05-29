@@ -60,23 +60,26 @@ export default {
           }).then((response) => {
             // then 指成功之后的回调 (注意：使用箭头函数，可以不考虑this指向)
             console.log(response);
-            // console.log(response.data);
-            this.resdata = response.data;
-            // this.tempdata = response.data.recordset
-            //this.msg = this.tempdata
-
-            if(this.resdata.length==1){
+            // this.resdata = response.data;
+            if(response.data.length==1){
               this.$message({
                 type: "Success",
                 message: "成功登录"
               })
-              console.log("this is test teacher or student")
-              console.log(this.ruleForm.id[0])
-              if(this.ruleForm.id[0] == 1){
-                this.$router.push({ name: 'StudentTable', query: { xh: this.ruleForm.id,xm: this.resdata[0].xm }});
+              // console.log("this is test teacher or student")
+
+              console.log(this.ruleForm.id)
+              console.log()
+              if(this.ruleForm.id[0] == '1'){
+                console.log("go to studenttable")
+                this.$router.push({ name: 'StudentInfo', query: { xh: this.ruleForm.id,xm: response.data[0].xm }});
+              }
+              else if(this.ruleForm.id[0] == '8'){
+                this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id,xm: response.data[0].xm }});
               }
               else{
-                this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id,xm: this.resdata[0].xm }});
+                // goto admin
+                // this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id,xm: this.resdata[0].xm }});
               }
             }
             else{
