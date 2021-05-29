@@ -41,6 +41,16 @@
           <i class="el-icon-menu"></i>查看开设项目<br>
         </el-menu-item>
       </router-link>
+      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <el-menu-item index="6" >
+          <i class="el-icon-menu"></i>个人信息<br>
+        </el-menu-item>
+      </router-link>
+      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <el-menu-item index="7" >
+          <i class="el-icon-menu"></i>查询学生信息<br>
+        </el-menu-item>
+      </router-link>
 
     </el-menu>
   </el-col>
@@ -68,9 +78,24 @@
            label="学号"
            width="180">
          </el-table-column>
+       <el-table-column
+         prop="fs"
+         label="成绩"
+         width="250" > <el-input v-model="input2" placeholder="请输入成绩"></el-input>
+         <el-button type="primary">保存</el-button>
+       </el-table-column>
       </el-table>
   </el-row>
 </template>
+
+<style>
+.el-row {
+  margin-bottom: 20px;
+}
+.el-input {
+  width: 120px;
+}
+</style>
 
 <script>
 export default {
@@ -79,8 +104,11 @@ export default {
   },
   mounted(){
     this.tableData = [];
-    this.gh = this.$route.query.gh
-    this.xm = this.$route.query.xm
+    // this.gh = this.$route.query.gh
+    // this.xm = this.$route.query.xm
+
+    this.gh = '8765001'
+    this.xm = 'aaa'
     console.log("this is table")
     console.log(this.gh)
     var _this=this;
@@ -104,7 +132,12 @@ export default {
     return {
       gh:'',
       xm:'',
-      tableData:[]
+      input:'',
+      input2:'',
+      tableData:[
+        {pid:80},
+        {pid:90}
+      ]
     }
   },
   methods: {

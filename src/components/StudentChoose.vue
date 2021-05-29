@@ -30,7 +30,16 @@
             <i class="el-icon-menu"></i>删除已选<br>
           </el-menu-item>
         </router-link>
-
+        <router-link :to="{path:'/components/StudentInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="4" >
+            <i class="el-icon-menu"></i>个人信息<br>
+          </el-menu-item>
+        </router-link>
+        <router-link :to="{path:'/components/StudentSearchTeacherInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="5" >
+            <i class="el-icon-menu"></i>查询教师信息<br>
+          </el-menu-item>
+        </router-link>
 
 
     </el-menu>
@@ -94,6 +103,7 @@ export default {
     this.xm = this.$route.query.xm
     console.log("this is table")
     console.log(this.xh)
+
     var _this=this;
     _this.$axios.get('/apis/users/studentGetAllProjectsExceptSelected', {
       params: {
@@ -110,6 +120,7 @@ export default {
       // catch 指请求出错的处理
       console.log(error);
     });
+
   },
   created(){
     // this.xh = this.$route.query.xh
