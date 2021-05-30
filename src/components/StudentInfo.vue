@@ -197,6 +197,7 @@ export default {
       var _this=this;
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          alert('修改成功');
           _this.$axios.get('/apis/users/updateStudentInfo', {
             params: {
               xb:this.ruleForm.xb,
@@ -208,15 +209,14 @@ export default {
               lxfs:this.ruleForm.lxfs
             }
           }).then((response) => {
-            alert('修改成功');
             console.log(response)
           }).catch((error) => {
             // catch 指请求出错的处理
-            alert('修改成功');
+            // alert('修改成功');
             console.log(error);
           });
         } else {
-          alert('修改失败');
+          // alert('修改失败');
           console.log('error submit!!');
           return false;
         }
