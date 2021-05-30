@@ -6,7 +6,7 @@
     </el-row>
     <el-row>
       <el-col :span="4">
-        <h2>教师-毕设管理系统</h2>
+        <h2>教师毕设管理系统</h2>
         <h3>工号：{{this.gh}}</h3>
         <h3>姓名：{{this.xm}}</h3>
         <el-menu

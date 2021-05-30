@@ -5,7 +5,7 @@
       </el-page-header>
     </el-row>
     <el-col :span="4">
-      <h2>学生-毕设管理系统</h2>
+      <h2>学生毕设管理系统</h2>
       <h3>学号：{{this.xh}}</h3>
       <h3>姓名：{{this.xm}}</h3>
       <el-menu
