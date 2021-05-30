@@ -166,11 +166,11 @@ export default {
           { required: true, message: '请输入绩点', trigger: 'blur' },
           { trigger: 'blur' }
         ],
-        sj: [
+        lxfs: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
           { min: 11, max: 11, message: '长度为11', trigger: 'blur' }
         ],
-        intro: [
+        grjs: [
           { message: '请填写个人介绍', trigger: 'blur' },
           { min: 0, max: 50, message: '长度在 0 到 50 个字符', trigger: 'blur' }
         ]
@@ -178,6 +178,9 @@ export default {
     }
   },
   methods: {
+    handleExit(){
+      this.$router.push({ name: 'Login', query: {}});
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -193,11 +196,30 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$message({
-            type: "Success",
-            message: "修改成功"
-          })
-          // alert('submit!');
+          _this.$axios.get('/apis/users/updateStudentInfo', {
+            params: {
+              xb:this.ruleForm.xb,
+              xh:this.ruleForm.xh,
+              xm:this.ruleForm.xm,
+              xy:this.ruleForm.xy,
+              jd:this.ruleForm.jd,
+              grjs:this.ruleForm.grjs,
+              lxfs:this.ruleForm.lxfs
+            }
+          }).then((response) => {
+            this.$message({
+              type: "Success",
+              message: "修改成功"
+            })
+            console.log(response)
+          }).catch((error) => {
+            // catch 指请求出错的处理
+            this.$message({
+              type: "Fail",
+              message: "修改失败"
+            })
+            console.log(error);
+          });
         } else {
           this.$message({
             type: "Fail",
