@@ -47,11 +47,10 @@
             <i class="el-icon-menu"></i>查看项目学生绩点排名<br>
           </el-menu-item>
         </router-link>
-
       </el-menu>
     </el-col>
 <!--      <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
-    <el-col :span="15">
+    <el-col :span="20">
        <el-table
           :data="tableData"
           style="width: 100%"

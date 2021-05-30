@@ -262,24 +262,15 @@ export default {
               lxfs:this.ruleForm.lxfs
             }
           }).then((response) => {
-            this.$message({
-              type: "Success",
-              message: "修改成功"
-            })
+            alert('修改成功');
             console.log(response)
           }).catch((error) => {
             // catch 指请求出错的处理
-            this.$message({
-              type: "Fail",
-              message: "修改失败"
-            })
+            alert('修改成功');
             console.log(error);
           });
         } else {
-          this.$message({
-            type: "Fail",
-            message: "修改失败"
-          })
+          alert('修改失败');
           console.log('error submit!!');
           return false;
         }

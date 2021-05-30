@@ -83,10 +83,8 @@ export default {
               }
             }
             else{
-              this.$message({
-                type: "Fail",
-                message: "失败，错误的用户名或者密码"
-              })
+
+
             }
           }).catch((error) => {
             // catch 指请求出错的处理

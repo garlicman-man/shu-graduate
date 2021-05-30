@@ -59,7 +59,7 @@
           <el-button type="primary"
                      @click="handleSearch() ">搜索</el-button>
         </el-col>
-        <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
+<!--        <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
       </el-row>
 
       <el-col :span="10">
