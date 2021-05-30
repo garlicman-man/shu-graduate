@@ -55,11 +55,9 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <!--      <el-button>默认按钮</el-button>-->
           <el-button type="primary"
                      @click="handleSearch() ">搜索</el-button>
         </el-col>
-<!--        <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
       </el-row>
 
       <el-col :span="10">

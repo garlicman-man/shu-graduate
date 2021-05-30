@@ -72,7 +72,7 @@ export default {
               console.log()
               if(this.ruleForm.id[0] == '1'){
                 console.log("go to studenttable")
-                this.$router.push({ name: 'StudentInfo', query: { xh: this.ruleForm.id,xm: response.data[0].xm }});
+                this.$router.push({ name: 'StudentTable', query: { xh: this.ruleForm.id,xm: response.data[0].xm }});
               }
               else if(this.ruleForm.id[0] == '8'){
                 this.$router.push({ name: 'TeacherTable', query: { gh: this.ruleForm.id,xm: response.data[0].xm }});

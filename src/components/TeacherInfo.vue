@@ -4,11 +4,10 @@
       <el-page-header @back="handleExit" title="退出">
       </el-page-header>
     </el-row>
-    <el-row>
-      <el-col :span="4">
-        <h2>教师毕设管理系统</h2>
-        <h3>工号：{{this.gh}}</h3>
-        <h3>姓名：{{this.xm}}</h3>
+    <el-col :span="4">
+      <h2>教师毕设管理系统</h2>
+      <h3>工号：{{this.gh}}</h3>
+      <h3>姓名：{{this.xm}}</h3>
       <el-menu
         default-active="6"
         class="el-menu-vertical-demo"
@@ -17,7 +16,7 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
-        >
+      >
         <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="1" >
             <i class="el-icon-menu"></i>选择学生<br>
@@ -53,40 +52,41 @@
             <i class="el-icon-menu"></i>查询学生信息<br>
           </el-menu-item>
         </router-link>
+
       </el-menu>
-      </el-col>
-      <el-col :span="10">
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm" disabled="true">
-          <el-form-item label="工号" prop="gh">
-            <el-input v-model="ruleForm.gh"></el-input>
-          </el-form-item>
-          <el-form-item label="姓名" prop="xm">
-            <el-input v-model="ruleForm.xm"></el-input>
-          </el-form-item>
-          <el-form-item label="性别" prop="xb">
-            <el-input v-model="ruleForm.xb"></el-input>
-          </el-form-item>
-          <el-form-item label="学院" prop="mc">
-            <el-input v-model="ruleForm.mc"></el-input>
-          </el-form-item>
-          <el-form-item label="职称" prop="zc">
-            <el-input v-model="ruleForm.zc"></el-input>
-          </el-form-item>
-        </el-form>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-          <el-form-item label="联系方式" prop="sj">
-            <el-input v-model="ruleForm.sj"></el-input>
-          </el-form-item>
-          <el-form-item label="个人介绍" prop="intro">
-            <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
+    </el-col>
+    <el-col :span="10">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm" disabled="true">
+        <el-form-item label="工号" prop="gh">
+          <el-input v-model="ruleForm.gh"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名" prop="xm">
+          <el-input v-model="ruleForm.xm"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" prop="xb">
+          <el-input v-model="ruleForm.xb"></el-input>
+        </el-form-item>
+        <el-form-item label="学院" prop="xy">
+          <el-input v-model="ruleForm.xy"></el-input>
+        </el-form-item>
+        <el-form-item label="职称" prop="zc">
+          <el-input v-model="ruleForm.zc"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
+        <el-form-item label="联系方式" prop="lxfs">
+          <el-input v-model="ruleForm.lxfs"></el-input>
+        </el-form-item>
+        <el-form-item label="个人介绍" prop="grjs">
+          <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+
   </el-row>
 </template>
 
@@ -99,6 +99,9 @@ export default {
     this.tableData = [];
     this.gh = this.$route.query.gh
     this.xm = this.$route.query.xm
+    console.log("this is table")
+    console.log(this.gh)
+    var _this=this;
     _this.$axios.get('/apis/users/getTeacherInfo', {
       params: {
         gh:this.gh
@@ -109,12 +112,13 @@ export default {
         _this.tableData.push(response.data[i]);
       }
       this.ruleForm.gh = this.tableData[0].gh;
-      this.ruleForm.xb = this.tableData[0].xb;
       this.ruleForm.xm = this.tableData[0].xm;
+      this.ruleForm.xb = this.tableData[0].xb;
       this.ruleForm.xy = this.tableData[0].xy;
       this.ruleForm.zc = this.tableData[0].zc;
       this.ruleForm.grjs = this.tableData[0].grjs;
       this.ruleForm.lxfs = this.tableData[0].lxfs;
+
       console.log(this.tableData);
     }).catch((error) => {
       // catch 指请求出错的处理
@@ -124,21 +128,21 @@ export default {
 
   data() {
     return {
-      gh:'111',
-      xm:'李小强',
+      gh:'',
+      xm:'',
       ruleForm: {
-        gh: "1234567",
-        xm: "李小强",
-        xb: "男",
-        mc: "计算机学院",
-        zc: "副教授",
-        sj: "13917825603",
-        grjs: "研究方向：计算机视觉"
+        gh: '',
+        xm: '',
+        xb: '',
+        xy: '',
+        zc: '',
+        grjs: '',
+        lxfs: ''
       },
       rules: {
         gh: [
           { required: true, message: '请输入工号', trigger: 'blur' },
-          { min: 7, max: 7, message: '长度为7', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
         xm: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -157,7 +161,7 @@ export default {
         ],
         sj: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
-          { min: 11, max: 11, message: '长度为11', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
         grjs: [
           { message: '请填写个人介绍', trigger: 'blur' },
@@ -183,6 +187,7 @@ export default {
       console.log(index, row);
     },
     submitForm(formName) {
+      var _this=this;
       this.$refs[formName].validate((valid) => {
         if (valid) {
           alert('修改成功');

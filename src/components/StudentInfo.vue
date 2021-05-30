@@ -48,7 +48,7 @@
       </el-menu>
     </el-col>
     <el-col :span="10">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm" disabled="true">
         <el-form-item label="学号" prop="xh">
           <el-input v-model="ruleForm.xh"></el-input>
         </el-form-item>
@@ -64,20 +64,12 @@
         <el-form-item label="绩点" prop="jd">
           <el-input v-model="ruleForm.jd"></el-input>
         </el-form-item>
-  <!--      <el-form-item label="个人介绍" prop="intro">-->
-  <!--        <el-input type="textarea" v-model="ruleForm.intro"></el-input>-->
-  <!--      </el-form-item>-->
-
-  <!--      <el-form-item>-->
-  <!--        <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>-->
-  <!--        <el-button @click="resetForm('ruleForm')">重置</el-button>-->
-  <!--      </el-form-item>-->
       </el-form>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-        <el-form-item label="联系方式" prop="sj">
+        <el-form-item label="联系方式" prop="lxfs">
           <el-input v-model="ruleForm.lxfs"></el-input>
         </el-form-item>
-        <el-form-item label="个人介绍" prop="intro">
+        <el-form-item label="个人介绍" prop="grjs">
           <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
         </el-form-item>
         <el-form-item>
@@ -102,9 +94,6 @@ export default {
     console.log("this is table")
     console.log(this.xh)
     var _this=this;
-
-
-
     _this.$axios.get('/apis/users/getStudentInfo', {
       params: {
         xh:this.xh
@@ -116,6 +105,7 @@ export default {
       }
       this.ruleForm.xh = this.tableData[0].xh;
       this.ruleForm.xm = this.tableData[0].xm;
+      this.ruleForm.xb = this.tableData[0].xb;
       this.ruleForm.xy = this.tableData[0].xy;
       this.ruleForm.jd = this.tableData[0].jd;
       this.ruleForm.grjs = this.tableData[0].grjs;
@@ -126,30 +116,25 @@ export default {
       // catch 指请求出错的处理
       console.log(error);
     });
-
-
-
-
-
   },
   data() {
     return {
-      xh:'111',
-      xm:'李小强',
+      xh:'',
+      xm:'',
       ruleForm: {
-        xh: "18120182",
-        xm: "冯沛欣",
-        xb: "女",
-        xy: "计算机学院",
-        jd: "3.55",
-        grjs: "我是冯沛欣",
-        lxfs: "1212121"
+        xh: '',
+        xm: '',
+        xb: '',
+        xy: '',
+        jd: '',
+        grjs: '',
+        lxfs: ''
 
       },
       rules: {
         xh: [
           { required: true, message: '请输入学号', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
         xm: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -168,7 +153,7 @@ export default {
         ],
         lxfs: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
-          { min: 11, max: 11, message: '长度为11', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
         grjs: [
           { message: '请填写个人介绍', trigger: 'blur' },
