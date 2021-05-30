@@ -54,7 +54,7 @@
     <el-col :span="15">
       <el-table
         :data="tableData"
-        style="width: 70%"
+        style="width: 100%"
         border='ture'>
         <el-table-column
           prop="gh"

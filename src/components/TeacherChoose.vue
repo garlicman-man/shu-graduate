@@ -59,30 +59,30 @@
       <el-col :span=18>
         <el-table
           :data="tableData"
-          style="width: 70%"
+          style="width: 100%"
           border='ture'
           >
           <el-table-column
             prop="pid"
             label="项目号"
-            width="145">
+            width="180">
           </el-table-column>
           <el-table-column
             prop="pmc"
             label="项目名"
-            width="145">
+            width="180">
           </el-table-column>
           <el-table-column
             prop="xh"
             label="学号"
-            width="145">
+            width="180">
           </el-table-column>
           <el-table-column
                 prop="xm"
                 label="姓名"
                 >
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" width="180">
             <template slot-scope="scope">
               <el-popconfirm
                 confirm-button-text='好的'

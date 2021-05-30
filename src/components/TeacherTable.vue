@@ -61,27 +61,27 @@
       <el-col span="18">
        <el-table
           :data="tableData"
-          style="width: 70%"
+          style="width: 100%"
           border='ture'>
           <el-table-column
             prop="pid"
             label="项目号"
-            width="165">
+            width="180">
           </el-table-column>
           <el-table-column
             prop="pmc"
             label="项目名"
-            width="165">
+            width="180">
           </el-table-column>
           <el-table-column
             prop="xm"
             label="学生名"
-            width="165">
+            width="180">
           </el-table-column>
            <el-table-column
              prop="xh"
              label="学号"
-             width="165">
+             width="180">
            </el-table-column>
         </el-table>
       </el-col>

@@ -53,32 +53,32 @@
     <el-col :span="18">
        <el-table
           :data="tableData"
-          style="width: 70%"
+          style="width: 100%"
           border='ture'>
           <el-table-column
             prop="pid"
             label="项目号"
-            width="130">
+            width="180">
           </el-table-column>
          <el-table-column
            prop="pmc"
            label="项目名"
-           width="130">
+           width="180">
          </el-table-column>
           <el-table-column
             prop="gh"
             label="工号"
-            width="130">
+            width="180">
           </el-table-column>
          <el-table-column
            prop="xm"
            label="教师名"
-           width="130">
+           width="180">
          </el-table-column>
           <el-table-column
             prop="count"
             label="选择人数"
-            width="130">
+            width="180">
           </el-table-column>
         </el-table>
 
