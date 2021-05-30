@@ -1,11 +1,13 @@
 <template>
-  <el-row  class="tac">
+  <el-row :span="24" :gutter="15">
+    <el-row>
+      <el-page-header @back="handleExit" title="退出">
+      </el-page-header>
+    </el-row>
     <el-col :span="4">
-      <el-card class="box-card">
-        <div>学生-毕设管理系统</div>
-        <div>{{this.xh}}</div>
-        <div>{{this.xm}}</div>
-      </el-card>
+      <h2>学生-毕设管理系统</h2>
+      <h3>学号：{{this.xh}}</h3>
+      <h3>姓名：{{this.xm}}</h3>
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
@@ -43,7 +45,7 @@
 
       </el-menu>
     </el-col>
-    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
+<!--    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
     <el-col :span="18">
     <el-table
       :data="tableData"

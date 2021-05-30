@@ -1,11 +1,13 @@
 <template>
-  <el-row  class="tac" :gutter="10">
+  <el-row :span="24" :gutter="15">
+    <el-row>
+      <el-page-header @back="handleExit" title="退出">
+      </el-page-header>
+    </el-row>
     <el-col :span="4">
-      <el-card class="box-card">
-        <div>管理员-毕设管理系统</div>
-        <div>{{this.gh}}</div>
-        <div>{{this.xm}}</div>
-      </el-card>
+      <h2>管理员毕设管理系统</h2>
+      <h3>工号：{{this.gh}}</h3>
+      <h3>姓名：{{this.xm}}</h3>
       <el-menu
         default-active="6"
         class="el-menu-vertical-demo"
@@ -25,22 +27,22 @@
             <i class="el-icon-menu"></i>管理教师<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/StudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/AdminStudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
           <el-menu-item index="3" >
             <i class="el-icon-menu"></i>查看学生排名<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/TeacherProjectCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/AdminTeacherProjectCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
           <el-menu-item index="4" >
             <i class="el-icon-menu"></i>查看教师项目数<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/ProjectStudentCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/AdminProjectStudentCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
           <el-menu-item index="5" >
             <i class="el-icon-menu"></i>查看项目选择人数<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/OpenProjectStudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/AdminOpenProjectStudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
           <el-menu-item index="6" >
             <i class="el-icon-menu"></i>查看项目学生绩点排名<br>
           </el-menu-item>
@@ -49,30 +51,27 @@
       </el-menu>
     </el-col>
 
-
     <el-col :span="20">
-      <el-row :gutter="10">
-    <el-col :span="4">
-      <el-input
-        placeholder="请输入项目号"
-        v-model="pid"
-        clearable>
-      </el-input>
-    </el-col>
-
-    <el-col :span="4">
-      <el-input
-        placeholder="请输入教师工号"
-        v-model="gh2"
-        clearable>
-      </el-input>
-    </el-col>
-
-    <el-col :span="4">
-      <el-button type="primary"
-                 @click="handleSearch() ">搜索</el-button>
-    </el-col>
-        <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
+      <el-row :gutter="15">
+        <el-col :span="4">
+          <el-input
+            placeholder="请输入项目号"
+            v-model="pid"
+            clearable>
+          </el-input>
+        </el-col>
+        <el-col :span="4">
+          <el-input
+            placeholder="请输入教师工号"
+            v-model="gh2"
+            clearable>
+          </el-input>
+        </el-col>
+        <el-col :span="4">
+          <el-button type="primary"
+                     @click="handleSearch() ">搜索</el-button>
+        </el-col>
+<!--        <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
       </el-row>
     </el-col>
 

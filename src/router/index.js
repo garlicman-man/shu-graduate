@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 
 import StudentTable from '@/components/StudentTable'
 import StudentDelete from '@/components/StudentDelete'
@@ -20,10 +20,15 @@ import TeacherSearchStudentInfo from '@/components/TeacherSearchStudentInfo'
 
 import AdminStudent from '@/components/AdminStudent'
 import AdminTeacher from '@/components/AdminTeacher'
-import StudentRank from '@/components/StudentRank'
-import TeacherProjectCount from '@/components/TeacherProjectCount'
-import ProjectStudentCount from '@/components/ProjectStudentCount'
-import OpenProjectStudentRank from '@/components/OpenProjectStudentRank'
+// import StudentRank from '@/components/StudentRank'
+// import TeacherProjectCount from '@/components/TeacherProjectCount'
+// import ProjectStudentCount from '@/components/ProjectStudentCount'
+// import OpenProjectStudentRank from '@/components/OpenProjectStudentRank'
+
+import AdminStudentRank from '@/components/AdminStudentRank'
+import AdminTeacherProjectCount from '@/components/AdminTeacherProjectCount'
+import AdminProjectStudentCount from '@/components/AdminProjectStudentCount'
+import AdminOpenProjectStudentRank from '@/components/AdminOpenProjectStudentRank'
 
 import Login from '@/components/Login'
 
@@ -69,24 +74,24 @@ export default new Router({
       component: AdminStudent,
     },
     {
-      path: '/components/StudentRank',
-      name: 'StudentRank',
-      component: StudentRank,
+      path: '/components/AdminStudentRank',
+      name: 'AdminStudentRank',
+      component: AdminStudentRank,
     },
     {
-      path: '/components/TeacherProjectCount',
-      name: 'TeacherProjectCount',
-      component: TeacherProjectCount,
+      path: '/components/AdminTeacherProjectCount',
+      name: 'AdminTeacherProjectCount',
+      component: AdminTeacherProjectCount,
     },
     {
-      path: '/components/ProjectStudentCount',
-      name: 'ProjectStudentCount',
-      component: ProjectStudentCount,
+      path: '/components/AdminProjectStudentCount',
+      name: 'AdminProjectStudentCount',
+      component: AdminProjectStudentCount,
     },
     {
-      path: '/components/OpenProjectStudentRank',
-      name: 'OpenProjectStudentRank',
-      component: OpenProjectStudentRank,
+      path: '/components/AdminOpenProjectStudentRank',
+      name: 'AdminOpenProjectStudentRank',
+      component: AdminOpenProjectStudentRank,
     },
     {
       path: '/components/StudentChoose',

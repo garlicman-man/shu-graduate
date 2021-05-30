@@ -1,11 +1,14 @@
 <template>
-  <el-row  class="tac">
-    <el-col :span="4">
-      <el-card class="box-card">
-        <div>教师-毕设管理系统</div>
-        <div>{{this.gh}}</div>
-        <div>{{this.xm}}</div>
-      </el-card>
+  <el-row :span="24" :gutter="15">
+    <el-row>
+      <el-page-header @back="handleExit" title="退出">
+      </el-page-header>
+    </el-row>
+    <el-row>
+      <el-col :span="4">
+        <h2>教师-毕设管理系统</h2>
+        <h3>工号：{{this.gh}}</h3>
+        <h3>姓名：{{this.xm}}</h3>
       <el-menu
         default-active="5"
         class="el-menu-vertical-demo"
@@ -15,7 +18,6 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-
         <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="1" >
             <i class="el-icon-menu"></i>选择学生<br>
@@ -51,44 +53,44 @@
             <i class="el-icon-menu"></i>查询学生信息<br>
           </el-menu-item>
         </router-link>
-
-    </el-menu>
-  </el-col>
-    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
-  <el-col :span=10>
-<el-table
+        </el-menu>
+      </el-col>
+<!--    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
+      <el-col :span=10>
+       <el-table
         :data="tableData"
         style="width: 90%"
         border='ture'
         >
-        <el-table-column
-          prop="pid"
-          label="项目号"
-          width="180">
-        </el-table-column>
-        <el-table-column
-          prop="pmc"
-          label="项目名"
-          width="180">
-        </el-table-column>
-    <el-table-column label="操作">
-    <template slot-scope="scope">
-      <el-popconfirm
-        confirm-button-text='好的'
-        @confirm="ConfirmDelete(scope.$index, scope.row)"
-        cancel-button-text='不用了'
-        icon="el-icon-info"
-        icon-color="red"
-        title="确定删除所选项目吗？"
-      >
-        <el-button
-         slot="reference"
-        @click="handleDelete() ">删除</el-button>
-      </el-popconfirm>
-    </template>
-    </el-table-column>
-  </el-table>
-  </el-col>
+          <el-table-column
+            prop="pid"
+            label="项目号"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="pmc"
+            label="项目名"
+            width="180">
+          </el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-popconfirm
+                confirm-button-text='好的'
+                @confirm="ConfirmDelete(scope.$index, scope.row)"
+                cancel-button-text='不用了'
+                icon="el-icon-info"
+                icon-color="red"
+                title="确定删除所选项目吗？"
+              >
+                <el-button
+                 slot="reference"
+                @click="handleDelete() ">删除</el-button>
+              </el-popconfirm>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-col>
+    </el-row>
   </el-row>
 </template>
 

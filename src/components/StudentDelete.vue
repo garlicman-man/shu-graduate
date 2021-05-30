@@ -1,11 +1,13 @@
 <template>
-  <el-row  class="tac">
+  <el-row :span="24" :gutter="15">
+    <el-row>
+      <el-page-header @back="handleExit" title="退出">
+      </el-page-header>
+    </el-row>
     <el-col :span="4">
-      <el-card class="box-card">
-        <div>学生-毕设管理系统</div>
-        <div>{{this.xh}}</div>
-        <div>{{this.xm}}</div>
-      </el-card>
+      <h2>学生-毕设管理系统</h2>
+      <h3>学号：{{this.xh}}</h3>
+      <h3>姓名：{{this.xm}}</h3>
       <el-menu
         default-active="3"
         class="el-menu-vertical-demo"
@@ -43,13 +45,13 @@
 
     </el-menu>
   </el-col>
-    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
-  <el-col :span=18>
-<el-table
-        :data="tableData"
-        style="width: 90%"
-        border='ture'
-        >
+<!--    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
+    <el-col :span=18>
+      <el-table
+      :data="tableData"
+      style="width: 90%"
+      border='ture'
+      >
         <el-table-column
           prop="pid"
           label="项目号"
@@ -70,24 +72,24 @@
               label="教师名"
               width="180">
         </el-table-column>
-    <el-table-column label="操作">
-    <template slot-scope="scope">
-      <el-popconfirm
-        confirm-button-text='好的'
-        @confirm="ConfirmDelete(scope.$index, scope.row)"
-        cancel-button-text='不用了'
-        icon="el-icon-info"
-        icon-color="red"
-        title="确定删除所选项目吗？"
-      >
-        <el-button
-         slot="reference"
-        @click="handleDelete() ">删除</el-button>
-      </el-popconfirm>
-    </template>
-    </el-table-column>
-  </el-table>
-  </el-col>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-popconfirm
+              confirm-button-text='好的'
+              @confirm="ConfirmDelete(scope.$index, scope.row)"
+              cancel-button-text='不用了'
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除所选项目吗？"
+            >
+              <el-button
+               slot="reference"
+              @click="handleDelete() ">删除</el-button>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-col>
   </el-row>
 </template>
 
