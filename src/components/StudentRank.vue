@@ -1,13 +1,13 @@
 <template>
-  <el-row  class="tac">
+  <el-row  class="tac" :gutter="10">
   <el-col :span="4">
     <el-card class="box-card">
-      <div>教师-毕设管理系统</div>
+      <div>管理员-毕设管理系统</div>
       <div>{{this.gh}}</div>
       <div>{{this.xm}}</div>
     </el-card>
     <el-menu
-      default-active="2"
+      default-active="3"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -15,40 +15,34 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       >
-
-      <router-link :to="{path:'/components/TeacherChoose',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/AdminStudent',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="1" >
-          <i class="el-icon-menu"></i>选择学生<br>
+          <i class="el-icon-menu"></i>管理学生<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherTable',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/AdminTeacher',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="2" >
-          <i class="el-icon-menu"></i>查看我选的学生<br>
+          <i class="el-icon-menu"></i>管理教师<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherDelete',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/StudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="3" >
-          <i class="el-icon-menu"></i>删除我选的学生<br>
+          <i class="el-icon-menu"></i>查看学生排名<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherOpen',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/TeacherProjectCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="4" >
-          <i class="el-icon-menu"></i>开设项目<br>
+          <i class="el-icon-menu"></i>查看教师项目数<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/ProjectStudentCount',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="5" >
-          <i class="el-icon-menu"></i>查看开设项目<br>
+          <i class="el-icon-menu"></i>查看项目选择人数<br>
         </el-menu-item>
       </router-link>
-      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+      <router-link :to="{path:'/components/OpenProjectStudentRank',query: {gh: this.gh,xm: this.xm}}" tag="span" >
         <el-menu-item index="6" >
-          <i class="el-icon-menu"></i>个人信息<br>
-        </el-menu-item>
-      </router-link>
-      <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
-        <el-menu-item index="7" >
-          <i class="el-icon-menu"></i>查询学生信息<br>
+          <i class="el-icon-menu"></i>查看项目学生绩点排名<br>
         </el-menu-item>
       </router-link>
 
@@ -56,42 +50,35 @@
   </el-col>
 
     <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
-    <el-col span="18">
+  <el-col :span="15">
      <el-table
         :data="tableData"
         style="width: 70%"
         border='ture'>
         <el-table-column
-          prop="pid"
-          label="项目号"
-          width="165">
-        </el-table-column>
-        <el-table-column
-          prop="pmc"
-          label="项目名"
-          width="165">
+          prop="xh"
+          label="学号"
+          width="180">
         </el-table-column>
         <el-table-column
           prop="xm"
-          label="学生名"
-          width="165">
+          label="姓名"
+          width="180">
         </el-table-column>
-         <el-table-column
-           prop="xh"
-           label="学号"
-           width="165">
-         </el-table-column>
+        <el-table-column
+          prop="jd"
+          label="绩点"
+          width="180">
+        </el-table-column>
       </el-table>
-    </el-col>
+
+  </el-col>
   </el-row>
 </template>
 
 <style>
 .el-row {
   margin-bottom: 20px;
-}
-.el-input {
-  width: 120px;
 }
 </style>
 
@@ -105,11 +92,11 @@ export default {
     this.gh = this.$route.query.gh
     this.xm = this.$route.query.xm
     console.log("this is table")
-    console.log(this.gh)
+    console.log(this.xh)
     var _this=this;
-    _this.$axios.get('/apis/users/teacherGetChosenStudents', {
+    _this.$axios.get('/apis/users/getAllStudentDescJd', {
       params: {
-        gh:this.gh
+
       }
     }).then((response) => {
       var i;
@@ -127,11 +114,10 @@ export default {
     return {
       gh:'',
       xm:'',
-      input:'',
-      input2:'',
       tableData:[]
     }
   },
+
   methods: {
     handleExit(){
       this.$router.push({ name: 'Login', query: {}});
@@ -143,16 +129,3 @@ export default {
 </script>
 
 
-<style>
-.text {
-  font-size: 14px;
-}
-
-.item {
-  padding: 18px 0;
-}
-
-.box-card {
-  width: 240px;
-}
-</style>

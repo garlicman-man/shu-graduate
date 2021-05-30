@@ -41,22 +41,21 @@
             <i class="el-icon-menu"></i>查看开设项目<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/TeacherInfo',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="6" >
             <i class="el-icon-menu"></i>个人信息<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/TeacherSearchStudentInfo',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="7" >
             <i class="el-icon-menu"></i>查询学生信息<br>
           </el-menu-item>
         </router-link>
 
-
-
     </el-menu>
   </el-col>
-  <el-col :span=18>
+    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
+  <el-col :span=14>
 <el-table
         :data="tableData"
         style="width: 70%"
@@ -94,12 +93,6 @@
   </el-col>
   </el-row>
 </template>
-
-
-
-
-
-
 
 <script>
 export default {
@@ -139,8 +132,8 @@ export default {
     tiaozhuan(router){
       this.$router.push({ name: router, params: { gh: this.ruleForm.id }});
     },
-    handleChoice(index, row) {
-
+    handleExit(){
+      this.$router.push({ name: 'Login', query: {}});
     },
     ConfirmChoice(index, row) {
       // var _this = this;

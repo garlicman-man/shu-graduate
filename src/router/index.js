@@ -20,7 +20,10 @@ import TeacherSearchStudentInfo from '@/components/TeacherSearchStudentInfo'
 
 import AdminStudent from '@/components/AdminStudent'
 import AdminTeacher from '@/components/AdminTeacher'
-
+import StudentRank from '@/components/StudentRank'
+import TeacherProjectCount from '@/components/TeacherProjectCount'
+import ProjectStudentCount from '@/components/ProjectStudentCount'
+import OpenProjectStudentRank from '@/components/OpenProjectStudentRank'
 
 import Login from '@/components/Login'
 
@@ -39,39 +42,52 @@ export default new Router({
       path: '/components/StudentSearchTeacherInfo',
       name: 'StudentSearchTeacherInfo',
       component: StudentSearchTeacherInfo,
-      // meta: {title: '首页'}
     },
     {
       path: '/components/TeacherSearchStudentInfo',
       name: 'TeacherSearchStudentInfo',
       component: TeacherSearchStudentInfo,
-      // meta: {title: '首页'}
     },
     {
       path: '/components/TeacherInfo',
       name: 'TeacherInfo',
       component: TeacherInfo,
-      // meta: {title: '首页'}
     },
     {
       path: '/components/AdminTeacher',
       name: 'AdminTeacher',
       component: AdminTeacher,
-      // meta: {title: '首页'}
     },
     {
       path: '/components/StudentInfo',
       name: 'StudentInfo',
       component: StudentInfo,
-      // meta: {title: '首页'}
     },
     {
       path: '/components/AdminStudent',
       name: 'AdminStudent',
       component: AdminStudent,
-      // meta: {title: '首页'}
     },
-
+    {
+      path: '/components/StudentRank',
+      name: 'StudentRank',
+      component: StudentRank,
+    },
+    {
+      path: '/components/TeacherProjectCount',
+      name: 'TeacherProjectCount',
+      component: TeacherProjectCount,
+    },
+    {
+      path: '/components/ProjectStudentCount',
+      name: 'ProjectStudentCount',
+      component: ProjectStudentCount,
+    },
+    {
+      path: '/components/OpenProjectStudentRank',
+      name: 'OpenProjectStudentRank',
+      component: OpenProjectStudentRank,
+    },
     {
       path: '/components/StudentChoose',
       name: 'StudentChoose',

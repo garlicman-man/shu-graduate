@@ -43,6 +43,7 @@
 
     </el-menu>
   </el-col>
+    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
   <el-col :span=18>
 <el-table
         :data="tableData"
@@ -128,6 +129,9 @@ export default {
 }
     },
         methods: {
+          handleExit(){
+            this.$router.push({ name: 'Login', query: {}});
+          },
              handleOpen(key, keyPath) {
                console.log(key, keyPath);
              },

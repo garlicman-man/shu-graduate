@@ -41,58 +41,156 @@
           </el-menu-item>
         </router-link>
 
+      </el-menu>
+    </el-col>
+    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
+    <el-col :span="18">
+    <el-table
+      :data="tableData"
+      style="width: 70%"
+      border='ture'
+    >
+      <el-table-column
+        prop="pid"
+        label="项目号"
+        width="130">
+      </el-table-column>
+      <el-table-column
+        prop="pmc"
+        label="项目名"
+        width="130">
+      </el-table-column>
+      <el-table-column
+        prop="gh"
+        label="工号"
+        width="130">
+      </el-table-column>
+      <el-table-column
+        prop="xm"
+        label="教师名"
+        width="130"
+      >
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-popconfirm
+            confirm-button-text='好的'
+            @confirm="ConfirmChoice(scope.$index, scope.row)"
+            cancel-button-text='不用了'
+            icon="el-icon-info"
+            icon-color="green"
+            title="确定选择所选项目吗？"
+          >
+            <el-button
+              slot="reference"
+              @click="handleChoice(scope.$index, scope.row) ">选择</el-button>
+          </el-popconfirm>
 
-    </el-menu>
-  </el-col>
-  <el-col :span=18>
-<el-table
-        :data="tableData"
-        style="width: 70%"
-        border='ture'
-        >
-        <el-table-column
-          prop="pid"
-          label="项目号"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          prop="pmc"
-          label="项目名"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          prop="gh"
-          label="工号"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          prop="xm"
-          label="教师名"
-          width="150"
-              >
-        </el-table-column>
-        <el-table-column label="操作">
-              <template slot-scope="scope">
-                    <el-popconfirm
-                      confirm-button-text='好的'
-                      @confirm="ConfirmChoice(scope.$index, scope.row)"
-                      cancel-button-text='不用了'
-                      icon="el-icon-info"
-                      icon-color="green"
-                      title="确定选择所选项目吗？"
-                    >
-                      <el-button
-                       slot="reference"
-                      @click="handleChoice(scope.$index, scope.row) ">选择</el-button>
-                    </el-popconfirm>
+        </template>
+      </el-table-column>
 
-              </template>
-            </el-table-column>
-
-  </el-table>
-  </el-col>
+    </el-table>
+    </el-col>
   </el-row>
 </template>
+
+<!--<template>-->
+<!--  <el-row  class="tac">-->
+<!--    <el-col :span="4">-->
+<!--      <el-card class="box-card">-->
+<!--        <div>学生-毕设管理系统</div>-->
+<!--        <div>{{this.xh}}</div>-->
+<!--        <div>{{this.xm}}</div>-->
+<!--      </el-card>-->
+<!--      <el-menu-->
+<!--        default-active="1"-->
+<!--        class="el-menu-vertical-demo"-->
+<!--        @open="handleOpen"-->
+<!--        @close="handleClose"-->
+<!--        background-color="#545c64"-->
+<!--        text-color="#fff"-->
+<!--        active-text-color="#ffd04b"-->
+<!--      >-->
+<!--        <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh,xm: this.xm}}" tag="span" >-->
+<!--          <el-menu-item index="1" >-->
+<!--            <i class="el-icon-menu"></i>毕设选择<br>-->
+<!--          </el-menu-item>-->
+<!--        </router-link>-->
+<!--        <router-link :to="{path:'/components/StudentTable',query: {xh: this.xh,xm: this.xm}}" tag="span" >-->
+<!--          <el-menu-item index="2" >-->
+<!--            <i class="el-icon-menu"></i>查看已选<br>-->
+<!--          </el-menu-item>-->
+<!--        </router-link>-->
+<!--        <router-link :to="{path:'/components/StudentDelete',query: {xh: this.xh,xm: this.xm}}" tag="span" >-->
+<!--          <el-menu-item index="3" >-->
+<!--            <i class="el-icon-menu"></i>删除已选<br>-->
+<!--          </el-menu-item>-->
+<!--        </router-link>-->
+<!--        <router-link :to="{path:'/components/StudentInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >-->
+<!--          <el-menu-item index="4" >-->
+<!--            <i class="el-icon-menu"></i>个人信息<br>-->
+<!--          </el-menu-item>-->
+<!--        </router-link>-->
+<!--        <router-link :to="{path:'/components/StudentSearchTeacherInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >-->
+<!--          <el-menu-item index="5" >-->
+<!--            <i class="el-icon-menu"></i>查询教师信息<br>-->
+<!--          </el-menu-item>-->
+<!--        </router-link>-->
+
+<!--    </el-menu>-->
+<!--  </el-col>-->
+
+<!--    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>-->
+
+<!--  <el-col :span=20>-->
+<!--<el-table-->
+<!--        :data="tableData"-->
+<!--        style="width: 70%"-->
+<!--        border='ture'-->
+<!--        >-->
+<!--        <el-table-column-->
+<!--          prop="pid"-->
+<!--          label="项目号"-->
+<!--          width="150">-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          prop="pmc"-->
+<!--          label="项目名"-->
+<!--          width="150">-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          prop="gh"-->
+<!--          label="工号"-->
+<!--          width="150">-->
+<!--        </el-table-column>-->
+<!--        <el-table-column-->
+<!--          prop="xm"-->
+<!--          label="教师名"-->
+<!--          width="150"-->
+<!--              >-->
+<!--        </el-table-column>-->
+<!--        <el-table-column label="操作">-->
+<!--              <template slot-scope="scope">-->
+<!--                    <el-popconfirm-->
+<!--                      confirm-button-text='好的'-->
+<!--                      @confirm="ConfirmChoice(scope.$index, scope.row)"-->
+<!--                      cancel-button-text='不用了'-->
+<!--                      icon="el-icon-info"-->
+<!--                      icon-color="green"-->
+<!--                      title="确定选择所选项目吗？"-->
+<!--                    >-->
+<!--                      <el-button-->
+<!--                       slot="reference"-->
+<!--                      @click="handleChoice(scope.$index, scope.row) ">选择</el-button>-->
+<!--                    </el-popconfirm>-->
+
+<!--              </template>-->
+<!--            </el-table-column>-->
+
+<!--  </el-table>-->
+<!--  </el-col>-->
+<!--  </el-row>-->
+<!--</template>-->
 
 
 <script>
@@ -136,6 +234,9 @@ export default {
     }
   },
   methods: {
+    handleExit(){
+      this.$router.push({ name: 'Login', query: {}});
+    },
     tiaozhuan(router){
       this.$router.push({ name: router, params: { xh: this.ruleForm.id }});
     },
@@ -185,7 +286,4 @@ export default {
   padding: 18px 0;
 }
 
-.box-card {
-  width: 240px;
-}
 </style>

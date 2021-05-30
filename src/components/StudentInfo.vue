@@ -1,79 +1,73 @@
 <template>
-  <el-row  class="tac">
-  <el-col :span="4">
-    <h5>学生-毕业设计选择系统</h5><br>
-    <h5>{{this.xh}}</h5><br>
-    <h5>{{this.xm}}</h5><br>
-    <el-menu
-      default-active="4"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+  <el-row  class="tac" :gutter="10">
+    <el-col :span="4">
+      <el-card class="box-card">
+        <div>学生-毕设管理系统</div>
+        <div>{{this.xh}}</div>
+        <div>{{this.xm}}</div>
+      </el-card>
+      <el-menu
+        default-active="4"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
       >
-      <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh,xm: this.xm}}" tag="span" >
-        <el-menu-item index="1" >
-          <i class="el-icon-menu"></i>毕设选择<br>
-        </el-menu-item>
-      </router-link>
+        <router-link :to="{path:'/components/StudentChoose',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="1" >
+            <i class="el-icon-menu"></i>毕设选择<br>
+          </el-menu-item>
+        </router-link>
+        <router-link :to="{path:'/components/StudentTable',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="2" >
+            <i class="el-icon-menu"></i>查看已选<br>
+          </el-menu-item>
+        </router-link>
+        <router-link :to="{path:'/components/StudentDelete',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="3" >
+            <i class="el-icon-menu"></i>删除已选<br>
+          </el-menu-item>
+        </router-link>
+        <router-link :to="{path:'/components/StudentInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="4" >
+            <i class="el-icon-menu"></i>个人信息<br>
+          </el-menu-item>
+        </router-link>
+        <router-link :to="{path:'/components/StudentSearchTeacherInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
+          <el-menu-item index="5" >
+            <i class="el-icon-menu"></i>查询教师信息<br>
+          </el-menu-item>
+        </router-link>
 
-      <router-link :to="{path:'/components/StudentTable',query: {xh: this.xh,xm: this.xm}}" tag="span" >
-        <el-menu-item index="2" >
-          <i class="el-icon-menu"></i>查看已选<br>
-        </el-menu-item>
-      </router-link>
-
-      <router-link :to="{path:'/components/StudentDelete',query: {xh: this.xh,xm: this.xm}}" tag="span" >
-        <el-menu-item index="3" >
-          <i class="el-icon-menu"></i>删除已选<br>
-        </el-menu-item>
-      </router-link>
-      <router-link :to="{path:'/components/StudentInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
-        <el-menu-item index="4" >
-          <i class="el-icon-menu"></i>个人信息<br>
-        </el-menu-item>
-      </router-link>
-      <router-link :to="{path:'/components/StudentSearchTeacherInfo',query: {xh: this.xh,xm: this.xm}}" tag="span" >
-        <el-menu-item index="5" >
-          <i class="el-icon-menu"></i>查询教师信息<br>
-        </el-menu-item>
-      </router-link>
-
-    </el-menu>
-  </el-col>
+      </el-menu>
+    </el-col>
+    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
       <el-col :span="10">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-      <el-form-item label="学号" prop="xh">
-        <el-input v-model="ruleForm.xh"></el-input>
-      </el-form-item>
-      <el-form-item label="姓名" prop="xm">
-        <el-input v-model="ruleForm.xm"></el-input>
-      </el-form-item>
-      <el-form-item label="性别" prop="xb">
-        <el-input v-model="ruleForm.xb"></el-input>
-      </el-form-item>
-      <el-form-item label="学院" prop="xy">
-        <el-input v-model="ruleForm.xy"></el-input>
-      </el-form-item>
-      <el-form-item label="绩点" prop="jd">
-        <el-input v-model="ruleForm.jd"></el-input>
-      </el-form-item>
-<!--      <el-form-item label="个人介绍" prop="intro">-->
-<!--        <el-input type="textarea" v-model="ruleForm.intro"></el-input>-->
-<!--      </el-form-item>-->
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm" disabled="true">
+          <el-form-item label="学号" prop="xh">
+            <el-input v-model="ruleForm.xh"></el-input>
+          </el-form-item>
+          <el-form-item label="姓名" prop="xm">
+            <el-input v-model="ruleForm.xm"></el-input>
+          </el-form-item>
+          <el-form-item label="性别" prop="xb">
+            <el-input v-model="ruleForm.xb"></el-input>
+          </el-form-item>
+          <el-form-item label="学院" prop="xy">
+            <el-input v-model="ruleForm.xy"></el-input>
+          </el-form-item>
+          <el-form-item label="绩点" prop="jd">
+            <el-input v-model="ruleForm.jd"></el-input>
+          </el-form-item>
+        </el-form>
 
-<!--      <el-form-item>-->
-<!--        <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>-->
-<!--        <el-button @click="resetForm('ruleForm')">重置</el-button>-->
-<!--      </el-form-item>-->
-    </el-form>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
-          <el-form-item label="联系方式" prop="sj">
+          <el-form-item label="联系方式" prop="lxfs">
             <el-input v-model="ruleForm.lxfs"></el-input>
           </el-form-item>
-          <el-form-item label="个人介绍" prop="intro">
+          <el-form-item label="个人介绍" prop="grjs">
             <el-input type="textarea" v-model="ruleForm.grjs"></el-input>
           </el-form-item>
           <el-form-item>
@@ -82,9 +76,14 @@
           </el-form-item>
         </el-form>
       </el-col>
-
   </el-row>
 </template>
+
+<style>
+.box-card {
+  width: 201px;
+}
+</style>
 
 <script>
 export default {
@@ -112,6 +111,7 @@ export default {
       }
       this.ruleForm.xh = this.tableData[0].xh;
       this.ruleForm.xm = this.tableData[0].xm;
+      this.ruleForm.xb = this.tableData[0].xb;
       this.ruleForm.xy = this.tableData[0].xy;
       this.ruleForm.jd = this.tableData[0].jd;
       this.ruleForm.grjs = this.tableData[0].grjs;
@@ -130,22 +130,22 @@ export default {
   },
   data() {
     return {
-      xh:'111',
-      xm:'李小强',
+      xh:'',
+      xm:'',
       ruleForm: {
-        xh: "18120182",
-        xm: "冯沛欣",
-        xb: "女",
-        xy: "计算机学院",
-        jd: "3.55",
-        grjs: "我是冯沛欣",
-        lxfs: "1212121"
+        xh: '',
+        xm: '',
+        xb: '',
+        xy: '',
+        jd: '',
+        grjs: '',
+        lxfs: ''
 
       },
       rules: {
         xh: [
           { required: true, message: '请输入学号', trigger: 'blur' },
-          { min: 8, max: 8, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
         xm: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -162,11 +162,11 @@ export default {
           { required: true, message: '请输入绩点', trigger: 'blur' },
           { trigger: 'blur' }
         ],
-        sj: [
+        lxfs: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
-          { min: 11, max: 11, message: '长度为11', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
-        intro: [
+        grjs: [
           { message: '请填写个人介绍', trigger: 'blur' },
           { min: 0, max: 50, message: '长度在 0 到 50 个字符', trigger: 'blur' }
         ]
@@ -174,22 +174,32 @@ export default {
     }
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
+    handleExit(){
+      this.$router.push({ name: 'Login', query: {}});
     },
     submitForm(formName) {
+      var _this=this;
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          _this.$axios.get('/apis/users/updateStudentInfo', {
+            params: {
+              xb:this.ruleForm.xb,
+              xh:this.ruleForm.xh,
+              xm:this.ruleForm.xm,
+              xy:this.ruleForm.xy,
+              jd:this.ruleForm.jd,
+              grjs:this.ruleForm.grjs,
+              lxfs:this.ruleForm.lxfs
+            }
+          }).then((response) => {
+            console.log(response)
+          }).catch((error) => {
+            // catch 指请求出错的处理
+            console.log(error);
+          });
+
           alert('submit!');
+
         } else {
           console.log('error submit!!');
           return false;

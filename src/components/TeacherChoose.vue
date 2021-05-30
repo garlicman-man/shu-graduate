@@ -41,21 +41,20 @@
             <i class="el-icon-menu"></i>查看开设项目<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+          <router-link :to="{path:'/components/TeacherInfo',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="6" >
             <i class="el-icon-menu"></i>个人信息<br>
           </el-menu-item>
         </router-link>
-        <router-link :to="{path:'/components/TeacherProject',query: {gh: this.gh, xm: this.xm}}" tag="span" >
+        <router-link :to="{path:'/components/TeacherSearchStudentInfo',query: {gh: this.gh, xm: this.xm}}" tag="span" >
           <el-menu-item index="7" >
             <i class="el-icon-menu"></i>查询学生信息<br>
           </el-menu-item>
         </router-link>
 
-
-
     </el-menu>
   </el-col>
+    <el-button type="primary" plain @click="handleExit() ">退出登录</el-button>
   <el-col :span=18>
 <el-table
         :data="tableData"
@@ -65,17 +64,17 @@
         <el-table-column
           prop="pid"
           label="项目号"
-          width="180">
+          width="145">
         </el-table-column>
         <el-table-column
           prop="pmc"
           label="项目名"
-          width="180">
+          width="145">
         </el-table-column>
         <el-table-column
           prop="xh"
           label="学号"
-          width="180">
+          width="145">
         </el-table-column>
         <el-table-column
               prop="xm"
@@ -104,11 +103,6 @@
   </el-col>
   </el-row>
 </template>
-
-
-
-
-
 
 
 <script>
@@ -149,6 +143,9 @@ export default {
     }
   },
   methods: {
+    handleExit(){
+      this.$router.push({ name: 'Login', query: {}});
+    },
     tiaozhuan(router){
       this.$router.push({ name: router, params: { gh: this.ruleForm.id }});
     },
