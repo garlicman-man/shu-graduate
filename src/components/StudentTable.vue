@@ -9,7 +9,7 @@
       <h3>学号：{{this.xh}}</h3>
       <h3>姓名：{{this.xm}}</h3>
       <el-menu
-        default-active="4"
+        default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"

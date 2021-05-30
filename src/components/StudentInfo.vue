@@ -149,7 +149,7 @@ export default {
       rules: {
         xh: [
           { required: true, message: '请输入学号', trigger: 'blur' },
-          { min: 8, max: 8, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
         xm: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
